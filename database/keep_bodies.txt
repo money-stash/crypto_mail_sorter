@@ -1,0 +1,56 @@
+Payment Transaction Detail
+You received an incoming transfer
+P2P Order Complete
+Please release crypto
+Withdrawal Successful
+binance Withdrawal Successful
+binance Withdrawal Requested
+Confirm Your Withdrawal
+Confirm Your USDC Withdrawal
+币安 Deposit Success
+Fiat Deposit Successful
+Deposit Successful
+Successful Deposit
+Payment Receive Successful
+Binance Pay Transaction
+Buy crypto successful
+Binance Purchase Success
+Ödeme İşlemi Bilgileri
+Varlık Transferi Onayı
+Asset Transfer Confirmation
+Ödeme Başarıyla Alındı
+Binance Pay İşlemi
+Pago recibido correctamente
+Transaction Received Successfully
+Retrait réussi
+Achat Binance effectué avec succès
+Transaction Binance Pay
+Dépôt effectué avec succès
+Dépôt de fonds fiat effectué avec succès
+Paiement reçu
+提现成功
+提现申请确认
+Potwierdź Wypłatę
+Wypłata Zakończona Pomyślnie
+Successo dell'acquisto con Binance VISA
+Saque Fiduciário Realizado com Sucesso
+Levantamento efetuado com sucesso
+Depósito efetuado com sucesso
+Transação do Binance Pay
+Retiro exitoso
+Binance Withdrawal Request
+Retiro fiat satisfactorio
+Retiro de fiat completado
+Confirma tu retiro
+Depósito correcto
+Depósito completado
+Depósito fiat completado
+Pago recibido correctamente
+Transacción de Binance Pay
+Binance Purchase Success Hello
+USDT 提現成功
+Nạp tiền thành công
+Nhận tiền thành công
+Penarikan Berhasil
+Konfirmasi Penarikan Anda
+Penyetoran Fiat Berhasil

@@ -1,13 +1,7 @@
 Keyword: advance_filter: 66
 
-Title: [Binance]  SOL network withdrawal resumed - 2024/05/28 01:02 (UTC)
-Body: SOL network withdrawal resumed SOL network withdrawal for SOL have resumed. You may withdraw your tokens on the withdrawal page. Visit Withdrawal Page Don't recognize this activity? Please reset
-
 Title: [Binance] SOL Withdrawal Successful - 2024-03-27 21:00:42 (UTC)
 Body: SOL Withdrawal Successful You've successfully withdrawn 33.98418000 SOL from your account. Withdrawal Address : 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Transaction ID :
-
-Title: [Binance] SOL Withdrawal Requested from Stockholm Sweden - 2024-03-27 20:58:08(UTC)
-Body: Confirm Your SOL Withdrawal You've initiated a request to withdraw 33.99618 SOL to the following address: Address: 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Memo: Please carefully review the
 
 Title: [Binance] SOL Deposit Confirmed - 2024-03-27 02:36:21(UTC)
 Body: SOL Deposit Successful Your deposit of 0.238875686 SOL is now available in your Binance account. Log in to check your balance. Read our FAQs if you are running into problems. Visit Your Dashboard Don
@@ -15,32 +9,18 @@ Body: SOL Deposit Successful Your deposit of 0.238875686 SOL is now available in
 Title: [Binance] SOL Withdrawal Successful - 2024-03-27 02:26:42 (UTC)
 Body: SOL Withdrawal Successful You've successfully withdrawn 0.04800000 SOL from your account. Withdrawal Address : 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Transaction ID :
 
-Title: [Binance] SOL Withdrawal Requested from Stockholm Sweden - 2024-03-27 02:23:59(UTC)
-Body: Confirm Your SOL Withdrawal You've initiated a request to withdraw 0.06 SOL to the following address: Address: 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Memo: Please carefully review the
-
 Title: [Binance] SOL Deposit Confirmed - 2024-03-27 02:17:18(UTC)
 Body: SOL Deposit Successful Your deposit of 35.066260993 SOL is now available in your Binance account. Log in to check your balance. Read our FAQs if you are running into problems. Visit Your Dashboard Don
 
 Title: [Binance] SOL Withdrawal Successful - 2024-03-25 20:58:41 (UTC)
 Body: SOL Withdrawal Successful You've successfully withdrawn 27.10376480 SOL from your account. Withdrawal Address : 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Transaction ID :
 
-Title: [Binance] SOL Withdrawal Requested from Stockholm Sweden - 2024-03-25 20:55:07(UTC)
-Body: Confirm Your SOL Withdrawal You've initiated a request to withdraw 27.1157648 SOL to the following address: Address: 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Memo: Please carefully review the
-
 Title: [Binance] SOL Withdrawal Successful - 2024-03-25 16:24:42 (UTC)
 Body: SOL Withdrawal Successful You've successfully withdrawn 2.58329319 SOL from your account. Withdrawal Address : 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Transaction ID :
-
-Title: [Binance] SOL Withdrawal Requested from Stockholm Sweden - 2024-03-25 16:21:09(UTC)
-Body: Confirm Your SOL Withdrawal You've initiated a request to withdraw 2.59529319 SOL to the following address: Address: 9nf5p9KHHdk5gNhEFrizCf4WUTqpdC3upNDPQe4DzYdk Memo: Please carefully review the
 
 Title: [Binance Pay]Payment Transaction Detail 94.191.152.77 - 2024-03-21 16:56:53(UTC)
 Body: Binance Pay Transaction You made the following payment via Binance Pay: Date & Time: Amount: 2024-03-21 16:56:53(UTC) 5 USDT View Pay Transaction History Don't recognize this activity? Please
 
-Title: [Binance] Passkey Added 94.191.152.77 - 2024-03-21 16:50:27(UTC)
-Body: Passkey Added Dear Binancian, You have successfully added a passkey to your Binance account. You can now log in to your account or withdraw your assets using your passkey. Yours sincerely, Binance V
-
 Title: [Binance] Your deposit has been received
 Body: Fiat Deposit Successful Your deposit of 1501 EUR is now available in your Binance account. You're all set! Click the link below to use your available cash balance to buy crypto. Buy Crypto Don'
 
-Title: [Binance Card] Congratulations on activating your Binance Physical Visa Card
-Body: Congratulations on activating your Binance Physical Visa Card Congratulations, your card ending in 2351: has been activated! Here's five steps to get you started: Here's five steps to get you

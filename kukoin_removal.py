@@ -2,20 +2,24 @@ from utils.logger import logger
 from database.config import LOGS_FOLDER, BODIES
 
 
-def remove_binace_messages(txt_path):
+def remove_kucoin_messages(txt_path):
     full_path = f"{LOGS_FOLDER}{txt_path}"
 
     logger.info(f"start processing: {full_path}")
     with open(full_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
     if (
-        len(lines) >= 4
+        len(lines) >= 8
         and lines[0].strip() == "Telegram: https://t.me/paranoid_checker"
         and lines[1].strip() == "Support: https://t.me/Checker_Support"
         and lines[2].strip() == "Support Bot: https://t.me/Checker_Support_Bot"
         and lines[3].strip() == ""
+        and lines[4].strip() == "Gmail:"
+        and lines[5].strip().startswith("Email:")
+        and lines[6].strip().startswith("Address:")
+        and lines[7].strip().startswith("Index:")
     ):
-        lines = lines[4:]
+        lines = lines[8:]
 
     with open(BODIES, "r", encoding="utf-8") as f:
         keep_bodies = [line.strip() for line in f if line.strip()]
@@ -50,7 +54,6 @@ def remove_binace_messages(txt_path):
 
     logger.debug(f"total lines before filter: {len(lines)}")
 
-    # очистка от лишних пустых строк
     cleaned_output = []
     empty = False
     for line in output:
@@ -69,4 +72,4 @@ def remove_binace_messages(txt_path):
         logger.info("removal complete")
 
 
-remove_binace_messages("Gmail_Info.txt")
+remove_kucoin_messages("Gmail_Info.txt")
