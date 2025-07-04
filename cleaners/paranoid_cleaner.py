@@ -3,7 +3,7 @@ from utils.logger import logger
 from database.config import LOGS_FOLDER, BODIES
 
 
-def remove_messages(txt_path):
+def remove_messages_paranoid(txt_path):
     full_path = f"{txt_path}"
 
     logger.info(f"start processing: {full_path}")
@@ -76,8 +76,8 @@ def process_all_files():
     for filename in os.listdir(folder_path):
         if filename.endswith(".txt"):
             full_path = os.path.join(folder_path, filename)
-            remove_messages(full_path)
+            remove_messages_paranoid(full_path)
 
 
-if __name__ == "__main__":
-    process_all_files()
+# if __name__ == "__main__":
+#     process_all_files()
