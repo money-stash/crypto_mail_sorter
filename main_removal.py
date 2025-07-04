@@ -1,25 +1,20 @@
+import os
 from utils.logger import logger
 from database.config import LOGS_FOLDER, BODIES
 
 
-def remove_kucoin_messages(txt_path):
-    full_path = f"{LOGS_FOLDER}{txt_path}"
+def remove_messages(txt_path):
+    full_path = f"{txt_path}"
 
     logger.info(f"start processing: {full_path}")
     with open(full_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
-    if (
-        len(lines) >= 8
-        and lines[0].strip() == "Telegram: https://t.me/paranoid_checker"
-        and lines[1].strip() == "Support: https://t.me/Checker_Support"
-        and lines[2].strip() == "Support Bot: https://t.me/Checker_Support_Bot"
-        and lines[3].strip() == ""
-        and lines[4].strip() == "Gmail:"
-        and lines[5].strip().startswith("Email:")
-        and lines[6].strip().startswith("Address:")
-        and lines[7].strip().startswith("Index:")
-    ):
-        lines = lines[8:]
+
+    if len(lines) > 10:
+        if "Emails:" in lines[10]:
+            lines = lines[11:]
+        elif "Title:" in lines[10]:
+            lines = lines[10:]
 
     with open(BODIES, "r", encoding="utf-8") as f:
         keep_bodies = [line.strip() for line in f if line.strip()]
@@ -71,5 +66,18 @@ def remove_kucoin_messages(txt_path):
         logger.info(f"total lines after cleanup: {len(cleaned_output)}")
         logger.info("removal complete")
 
+    if len(cleaned_output) == 0:
+        os.remove(full_path)
+        logger.info(f"deleted empty file: {full_path}")
 
-remove_kucoin_messages("Gmail_Info.txt")
+
+def process_all_files():
+    folder_path = "dirty_logs/"
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".txt"):
+            full_path = os.path.join(folder_path, filename)
+            remove_messages(full_path)
+
+
+if __name__ == "__main__":
+    process_all_files()
