@@ -1,2 +1,6 @@
 LOGS_FOLDER = "logs/"
 BODIES = "database/keep_bodies.txt"
+WITHDRAW_REG = "database/withdraw_regular.txt"
+P2P_REG = "database/p2p_regular.txt"
+DEPOSIT_REG = "database/deposit_regular.txt"
+TRASH_REG = "database/trash_regular.txt"

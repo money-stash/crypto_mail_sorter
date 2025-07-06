@@ -1,62 +1,865 @@
-Payment Transaction Detail
-You received an incoming transfer
-P2P Order Complete
-Please release crypto
-Withdrawal Successful
-binance Withdrawal Successful
-binance Withdrawal Requested
-Confirm Your Withdrawal
-Confirm Your USDC Withdrawal
-币安 Deposit Success
-Fiat Deposit Successful
-Deposit Successful
-Successful Deposit
-Payment Receive Successful
-Binance Pay Transaction
-Buy crypto successful
-Binance Purchase Success
-Ödeme İşlemi Bilgileri
-Varlık Transferi Onayı
-Asset Transfer Confirmation
-Ödeme Başarıyla Alındı
-Binance Pay İşlemi
-Pago recibido correctamente
-Transaction Received Successfully
-Retrait réussi
-Achat Binance effectué avec succès
-Transaction Binance Pay
-Dépôt effectué avec succès
-Dépôt de fonds fiat effectué avec succès
-Paiement reçu
-提现成功
-提现申请确认
-Potwierdź Wypłatę
-Wypłata Zakończona Pomyślnie
-Successo dell'acquisto con Binance VISA
-Saque Fiduciário Realizado com Sucesso
-Levantamento efetuado com sucesso
-Depósito efetuado com sucesso
-Transação do Binance Pay
-Retiro exitoso
-Binance Withdrawal Request
-Retiro fiat satisfactorio
-Retiro de fiat completado
-Confirma tu retiro
-Depósito correcto
-Depósito completado
-Depósito fiat completado
-Pago recibido correctamente
-Transacción de Binance Pay
-Binance Purchase Success Hello
-USDT 提現成功
-Nạp tiền thành công
-Nhận tiền thành công
-Penarikan Berhasil
-Konfirmasi Penarikan Anda
-Penyetoran Fiat Berhasil
-Kucoin Hola
-Hello Trader
-USDT 34,033537 USDT
-Welcome to Poloniex
-Únete
-Vous avez mis
+Identity Verification Failed
+Yeni Bir Cihazdan
+USDⓈ-M Futures
+New Device Login
+Perjalanan Kripto Dimulai
+Crypto Journey Starts
+Aventure Crypto
+Novo Dispositivo Sessão
+Estamos aquí para ayudar
+Aventura Criptomonedas
+Login Verification
+We're here to help
+Estamos aquí para ayudarte
+Bind Google 2FA
+Nuevo Dispositivo Sesión
+Update KYC Information
+Verification Code
+Confirm Registration
+Verification Successful
+Verify with QR
+Reliez votre téléphone
+Experiencia Criptomonedas
+New IP Login Detected
+Authorization Successful
+Mobile Number Change
+Bind Authenticator
+Enable Anti-Phishing
+Update Security Settings
+Security Notice
+Protect Account
+Risk Notice
+Verify Identity
+Unknown Device Attempt
+Device Authorization
+Secure Your Account
+Finish Security Setup
+Two-Step Verification
+Actividad Inusual Cuenta
+Do Not Share Code
+Votre aventure crypto
+Verifikasi Dua Langkah
+Восстановление безопасности
+Security Key Enabled
+Verifikasi SMS Aktif
+Privacy Important
+KYC Reminder
+Upload Identity Documents
+Tin nhắn xác minh
+Verification Code Valid
+Запрос на смену номера
+Update Personal Information
+Código Antiphishing
+Anti-Phishing Code
+Update Residency
+Liveness Check
+Phishing Protection
+Keep Credentials Safe
+Verifikasi Identitas
+Update Emergency Contacts
+Activate Account
+Secure Account Today
+Никому код подтверждения
+Avertissement Sécurité
+Kode Antiphishing
+Verifique seu email
+Autenticación Dos Factores
+Google Authenticator Aktif
+Update Profile Information
+Nous sommes là
+Identity Check Reminder
+Enable Face ID
+Autentikasi Dua Faktor
+Compliance Status
+Confirmar correo
+Kode verifikasi berlaku
+Lift Restrictions
+Seguridad Configuración
+Unauthorized Access
+Código expirará
+Identidade Pendente
+Verify Email
+Documents Under Review
+Vérification d’identité
+Peringatan Login
+Аккаунт защищён
+Bind Phone Number
+Device Management Notification
+KYC Status Expiring
+Verify Contact Information
+New Browser Detected
+Подтвердите, что это вы
+Pending Verification Steps
+Aktualizuj dane osobowe
+Proof of Residence
+Hardware Key Protect
+Finish Verification
+Không chia sẻ mã
+Confirm Email Address
+Security Alert
+2FA Reminder
+Check Compliance
+Account Recovery Instructions
+Reset Your Password
+Password Reset Link
+Password Change Alert
+Unusual Activity Notice
+Suspicious Login Alert
+Security Update Required
+Protect Your Password
+One-Time Verification
+Security Advice
+Account Review Needed
+Verify Device Location
+Update Contact Details
+Email Confirmation Needed
+Confirm Your Email
+Verify Mobile Number
+Phone Verification Needed
+Account Activity Alert
+Secure Login Alert
+Login Attempt Notice
+Attention Required
+Action Required
+Important Account Notice
+Update Required
+Verify Your Details
+Safe Browsing Tips
+System Maintenance Notice
+Scheduled Maintenance
+Service Update
+Service Notification
+Urgent Security Notice
+Authenticate Your Account
+Authentication Reminder
+Account Reminder
+Friendly Reminder
+Verify Ownership
+Identity Confirmation
+Identity Check
+Account Confirmation
+Profile Update Required
+Update Your Profile
+Profile Reminder
+Stay Safe Online
+Keep Your Account Safe
+Keep Account Secure
+Guard Your Credentials
+Security Awareness
+Scam Prevention Tips
+Fraud Prevention
+Phishing Alert
+Be Aware of Scams
+Security Education
+Announcement
+Welcome Aboard
+Welcome Message
+Account Welcome
+Welcome Email
+Newsletter Update
+Latest Updates
+Product Update
+New Feature Alert
+Feature Announcement
+Community Update
+Community Newsletter
+Stay Informed
+System Notification
+Privacy Update
+Terms Update
+Policy Update
+Policy Reminder
+Agree to Terms
+Accept New Terms
+Account Settings Change
+Settings Updated
+Contact Preference Update
+Communication Preferences
+Opt-In Confirmation
+Subscription Confirmation
+Subscription Notice
+Unsubscribe Confirmation
+Feedback Request
+Survey Invitation
+Tell Us More
+We Value Feedback
+Customer Support
+Support Ticket
+Ticket Update
+Support Response
+Help Center
+Important Information
+Gentle Reminder
+Keep in Touch
+Stay Connected
+Message from Team
+Greetings
+Getting Started Guide
+Quick Start
+Setup Guide
+Tips and Tricks
+Helpful Resources
+Security Patch Rolled
+Account Security Tips
+Device Safety Check
+Identity Protection Guide
+Phishing Detection Guide
+Fraud Alert Tips
+Safety Advisory
+Cybersecurity Bulletin
+Security Best Practices
+Secure Your Device
+New Security Feature
+Two Factor Setup
+Trust Device Prompt
+Login Safety Reminder
+Enhance Account Safety
+Verify Device Ownership
+IP Address Alert
+Unknown Browser Alert
+Browser Safety Notice
+Keep Password Safe
+Password Hygiene Tips
+Update Credentials
+Account Safety Guide
+Security Checklist
+Verify Email Ownership
+Email Security Tips
+Mobile Safety Tips
+Device Verification Needed
+Profile Security Alert
+Safety Confirmation
+Security Verification Needed
+Password Security Tips
+Privacy Reminder
+Manage Privacy Settings
+Privacy Notice
+Privacy Preferences
+Data Protection Notice
+Data Safety Tips
+Secure Data Reminder
+Data Privacy Alert
+Account Details Update
+Details Confirmation
+Confirm Details
+User Information Update
+Update User Info
+Keep Details Current
+Contact Info Reminder
+Profile Details Alert
+Contact Update Needed
+Email Preferences Updated
+Email Preferences Reminder
+Change Notification Settings
+Notification Preferences
+Manage Notifications
+Notification Settings Alert
+Opt-Out Option
+Confirm Subscription
+Subscription Preferences
+Subscription Settings
+Subscription Reminder
+Service Status Update
+System Alert
+Platform Update
+Platform Notice
+Platform Tutorial
+Getting Started Tips
+Onboarding Guide
+Account Tutorial
+Quick Guide
+Learning Resources
+Resource Center
+Knowledge Base Article
+FAQ Update
+Help Article
+Support Resources
+Support Update
+Customer Care
+Assistance Available
+Contact Support
+Contact Us
+Need Assistance
+We Are Listening
+Share Your Thoughts
+Feedback Reminder
+Rate Your Experience
+Satisfaction Survey
+Service Survey
+Experience Survey
+User Survey
+User Poll
+Community Poll
+Community Feedback
+Participate Now
+Join the Conversation
+Community Invitation
+Forum Invitation
+Forum Digest
+Forum Update
+Community Digest
+Event Invitation
+Webinar Invitation
+Webinar Reminder
+Webinar Update
+Training Invitation
+Training Reminder
+Training Update
+Workshop Invitation
+Workshop Reminder
+Workshop Update
+Conference Invitation
+Conference Reminder
+Conference Update
+Meetup Invitation
+Meetup Reminder
+Meetup Update
+Live Session Invite
+Live Session Reminder
+Live Session Update
+Live Q&A Invite
+Live Q&A Reminder
+Live Q&A Update
+Product Tutorial
+Feature Guide
+Feature Tips
+Feature Walkthrough
+Beta Program Invite
+Beta Program Update
+Early Access Invite
+Early Access Reminder
+Early Access Update
+Insider Program Invite
+Insider Program Update
+Insider Announcement
+Insider Newsletter
+Release Notes
+Version Update
+Version Release
+Patch Notes
+Patch Release
+Changelog Update
+Bug Fix Announcement
+Maintenance Complete
+System Restored
+Service Restored
+Downtime Notice
+Downtime Update
+Scheduled Downtime
+Outage Update
+Issue Resolved
+Issue Update
+Incident Report
+Incident Update
+Status Notification
+Status Reminder
+Status Report
+Status Alert
+Healthy Status
+Performance Update
+Performance Tips
+Optimization Tips
+Improve Performance
+Upgrade Notice
+Upgrade Reminder
+Upgrade Complete
+Migration Notice
+Migration Reminder
+Migration Complete
+Integration Guide
+Integration Tips
+API Update
+API Notice
+Developer Update
+Dev Newsletter
+Dev Alert
+Dev Resources
+Roadmap Update
+Product Roadmap
+Future Features
+Upcoming Changes
+Coming Soon
+Sneak Peek
+Preview Invitation
+Preview Reminder
+Preview Update
+Feature Preview
+Try New Feature
+Access New Tools
+New Tools Available
+Tools Update
+User Guide Update
+Documentation Update
+Docs Updated
+Release Update
+Weekly Digest
+Monthly Digest
+Quarterly Update
+Annual Update
+Yearly Summary
+Holiday Hours
+Season Greetings
+Security Advisory Notice
+Enhanced Protection Tips
+Shield Your Account
+Secure Session Notice
+Account Integrity Alert
+Defense Checklist
+Cyber Alert Bulletin
+Online Safety Reminder
+Digital Hygiene Tips
+Privacy Shield Notice
+Data Integrity Reminder
+Safeguard Information
+User Vigilance Alert
+Account Watch Advisory
+Phishing Prevention
+Scam Awareness Guide
+Fraud Shield Notice
+Threat Detection Alert
+Suspicious Activity Note
+Risk Mitigation Guide
+Vulnerability Notice
+Patch Advisory
+Version Bulletin
+Update Advisory
+Improvement Notice
+Enhancement Bulletin
+Feature Enhancement Note
+Interface Upgrade Guide
+Dashboard Enhancement
+Layout Refresh Notice
+Navigation Update
+UX Refresh
+Look and Feel Update
+Color Scheme Update
+Theme Refresh Notice
+Icon Set Update
+Branding Update
+Brand Identity Notice
+Logo Update
+Style Guide Update
+Design Guidelines
+Accessibility Reminder
+A11y Guide
+Contrast Check Reminder
+Font Update Notice
+Typography Guidelines
+Layout Guidelines
+Responsive Design Tips
+Mobile Optimization
+Mobile Layout Update
+App Size Reduction
+Performance Tuning Guide
+Load Time Alert
+Speed Boost Notice
+Latency Advisory
+Bandwidth Optimization
+Resource Use Alert
+Memory Usage Notice
+CPU Usage Alert
+Efficiency Improvement
+Energy Saver Tips
+Battery Optimization
+Eco Mode Reminder
+Green Computing Tips
+Sustainability Reminder
+Carbon Footprint Tip
+Climate Commitment Note
+Environmental Advisory
+Eco Awareness Update
+Community Sustainability
+CSR Update
+Social Impact Report
+Diversity Statement
+Inclusion Update
+Equal Opportunity Notice
+Ethics Statement
+Governance Update
+Transparency Report
+Trust Center Update
+Compliance Bulletin
+Regulation Compliance Guide
+Audit Preparedness Tips
+Certification Reminder
+Accreditation Notice
+Standards Update
+Quality Assurance Tips
+QA Report
+Quality Improvement
+Testing Report
+Test Coverage Notice
+Test Results Update
+Benchmark Report
+Benchmark Reminder
+Performance Metrics Notice
+KPI Update
+OKR Reminder
+Goal Setting Guide
+Objective Update
+Deliverable Reminder
+Deadline Reminder
+Timeline Update
+Project Timeline Notice
+Milestone Schedule
+Sprint Schedule Update
+Backlog Notice
+USDⓈ-M Futures
+Task Assignment Notice
+Role Assignment Update
+Responsibility Matrix
+RACI Reminder
+Stakeholder Update
+Sponsor Notice
+Partner Update
+Partnership Notice
+Collaboration Invitation
+Collaboration Update
+Cross-Team Update
+Department Notice
+Team Announcement
+Team Bulletin
+Daily Standup Reminder
+Weekly Standup Notice
+Retro Meeting Notice
+Demo Day Reminder
+Planning Session Alert
+Workshop Agenda
+Training Agenda
+Coaching Session Invite
+Mentorship Program Invite
+Mentor Session Reminder
+Peer Review Reminder
+Code Review Notice
+Pull Request Reminder
+Repository Update
+Git Commit Tips
+Version Control Guide
+Branch Strategy Update
+Merge Guidelines
+Continuous Integration Note
+CI Pipeline Update
+Build Status Notice
+Deployment Pipeline Guide
+Continuous Delivery Note
+Release Candidate Notice
+Release Candidate Ready
+Production Rollout Notification
+Go-Live Announcement
+Rollback Plan Notice
+Hotfix Notice
+Hotfix Applied
+Patch Deployment Notice
+Zero Downtime Deployment
+Blue-Green Deployment
+Canary Release Notice
+Feature Flag Update
+Flag Toggle Reminder
+Switch Activation Notice
+Logging Level Update
+Monitoring Alert
+Observer Notification
+Telemetry Update
+Alert Threshold Change
+Threshold Warning
+Incident Triage Notice
+Postmortem Invitation
+Root Cause Report
+Lessons Learned Memo
+Improvement Action Plan
+Action Plan Reminder
+Preventive Measure Notice
+Safety Net Update
+Contingency Plan Notice
+Failover Test Update
+Disaster Recovery Drill
+DR Plan Reminder
+Backup Verification Notice
+Restore Test Reminder
+Data Integrity Check
+Data Consistency Notice
+Data Migration Plan
+Schema Change Notice
+Database Maintenance
+Index Optimization
+Cache Flush Notice
+Cache Warmup Reminder
+CDN Update Notice
+Routing Update
+DNS Update Notice
+Certificate Renewal Notice
+Certificate Update
+Encryption Key Rotation
+Token Rotation Notice
+Authentication Method Update
+Authorization Framework Note
+Access Log Notice
+Login Record Notice
+Session Audit Log
+Consent Reminder
+Preference Center Update
+Opt-In Reminder
+Unsubscribe Options
+Did You Login From a New Device or
+Login Verification Your verification code The verification
+Binance Verification Code Your verification code The
+New Device or IP Login Detected on Your
+Verification Successful Congratulations you have passed the review
+Password Changed The password linked to your Binance
+Your Crypto Journey Starts Now Welcome to Binance
+Reset Password Dear user You are trying to
+Bind your mobile to your Binance account Your
+Passkey Added Dear Binancian You have successfully added
+Were here to help We noticed that you
+Bind Google FA to your Binance account Your
+Login Verification
+Identity Verification Failed Sorry you did not pass
+¿Iniciaste sesión desde un nuevo dispositivo o ubicación
+Verificación de Inicio de sesión Tu código de
+Yeni Bir Cihazdan veya Konumdan mı Giriş Yaptınız
+Vérification de connexion Votre code de vérification
+Update Your KYC Information Hi Binancian Were writing
+Google Authenticator Disabled The Google Authenticator linked
+Passkey Removed Dear Binancian You have successfully removed
+Device Authorization Successful The login attempt from
+Unknown Device Attempt We detected a new
+New Browser Detected We noticed you signed
+Security Notice Unusual Login Activity Detected
+Two-Step Verification Enable two-step verification to
+Enable Anti-Phishing Code Protect your account with
+Protect Account Enable Anti-Phishing Code
+Security Key Enabled Your security key is
+Identity Confirmation Please complete identity verification
+Verify Identity to unlock all features
+Compliance Status Please review your account
+KYC Reminder Important information required
+Upload Identity Documents to continue using
+Liveness Check Please complete a quick
+Update Personal Information Promptly update your
+Update Residency Information Dear user Please update
+Proof of Residence Please submit proof
+Update Emergency Contacts for your account
+Privacy Reminder Your account privacy is
+Keep Credentials Safe Never share your code
+Security Advice Protect your password
+Stay Safe Online Security awareness tips
+Guard Your Credentials Keep your account secure
+Security Alert We detected a new
+Security Update Required To continue using
+Security Patch Rolled Important security update
+Cybersecurity Bulletin Best practices to stay
+Online Safety Reminder Practice good security hygiene
+Digital Hygiene Tips Simple steps to protect
+Scam Prevention Tips Learn how to spot
+Phishing Alert Beware of phishing attempts
+Fraud Prevention Tips Stay vigilant against
+User Vigilance Alert Be aware of
+Safety Advisory General security reminder
+Account Integrity Alert Suspicious activity detected
+Account Review Needed Please review your
+Action Required to secure your account
+Important Account Notice Please read carefully
+Verify Device Location Confirm this was you
+Verify Email Ownership Please confirm your email
+Email Confirmation Needed Click the link to
+Confirm Your Email address
+Verify Mobile Number Enter the verification code
+Phone Verification Needed To keep your account
+Contact Update Needed Update your contact details
+Profile Update Required Please update your profile
+Update Security Settings Strengthen your protection
+Finish Security Setup Complete your setup
+Enable Face ID for quick login
+Enable Passcode Unlock for faster access
+Enable Two Factor Setup now
+Trust Device Prompt Authorize this device
+Login Safety Reminder For your protection
+Enhance Account Safety Turn on extra security
+Secure Login Alert Suspicious sign-in attempt
+Account Activity Alert We noticed unusual
+Attention Required Review recent activity
+Authentication Reminder Dont forget to enable
+Authenticate Your Account Complete authentication
+Verify Ownership Confirm you own this
+Unknown Browser Alert We’ve detected an unknown
+IP Address Alert New IP detected
+Privacy Notice We’ve updated our
+Data Protection Notice Changes to data policy
+Privacy Update Please review our
+Terms Update We’ve updated our Terms
+Policy Reminder Action may be required
+Agree to Terms To continue using
+Accept New Terms Click to accept
+Notification Preferences Manage your notifications
+Change Notification Settings Adjust how we contact
+Opt-In Confirmation Thanks for subscribing
+Subscription Confirmation Your preferences saved
+Unsubscribe Confirmation You have been removed
+System Maintenance Notice Planned maintenance schedule
+Scheduled Maintenance Our services will be
+Service Status Update All systems operational
+System Alert Informational message only
+Platform Update Latest improvements inside
+Platform Notice Important information about
+New Feature Alert Check out what’s new
+Feature Announcement Discover new capabilities
+Product Update We’ve added new tools
+Feature Guide Learn how to use
+Helpful Resources Quick start guide
+Getting Started Guide Welcome aboard
+Quick Start Set up your account
+Setup Guide Follow these steps
+Tips and Tricks Power-user hints
+Knowledge Base Article Read more in help
+Help Center Visit our help center
+Support Ticket Your request has been
+Support Response We have replied
+Customer Support How can we assist
+We Are Listening Share your thoughts
+Feedback Request Tell us what you think
+Survey Invitation Your opinion matters
+Rate Your Experience Let us know
+Community Update Latest news from community
+Community Newsletter Stay informed with
+Community Invitation Join the conversation
+Forum Update New discussion topics
+Event Invitation You’re invited to
+Webinar Reminder Don’t miss our webinar
+Training Invitation Improve your skills
+Workshop Reminder Upcoming workshop details
+Conference Update Conference information
+Meetup Invitation Connect with others
+Live Session Reminder Tune in live
+Release Notes What’s changed
+Version Update New release available
+Patch Notes Bug fixes and improvements
+Changelog Update See what’s new
+Maintenance Complete Services restored
+System Restored All functions normal
+Issue Resolved The issue is fixed
+Status Notification Current operational status
+Performance Update Enhancements applied
+Optimization Tips Speed up your
+Improve Performance Suggestions inside
+Upgrade Notice Upcoming upgrade
+Upgrade Reminder Prepare for upgrade
+Migration Notice Scheduled migration
+Integration Guide How to integrate
+API Update New API version
+Developer Update Dev community news
+Roadmap Update What’s next
+Upcoming Changes Preview upcoming changes
+Sneak Peek Early look
+Preview Invitation Try upcoming features
+Feature Preview Get early access
+Weekly Digest Your weekly summary
+Monthly Digest Your monthly summary
+Quarterly Update Key highlights
+Annual Update Year-in-review
+Season Greetings Wishing you well
+Holiday Hours Schedule changes
+Security Advisory Notice Please read this alert
+Enhanced Protection Tips Strengthen your defences
+Shield Your Account Extra security tips
+Secure Session Notice Your session is secure
+Defense Checklist Steps to secure
+Cyber Alert Bulletin Security awareness update
+Threat Detection Alert Potential risk detected
+Suspicious Activity Note Something looks unusual
+Risk Mitigation Guide Reduce your exposure
+Vulnerability Notice Patch available
+Patch Advisory Apply the latest patch
+Interface Upgrade Guide Learn about interface changes
+Layout Refresh Notice Updated layout
+Navigation Update Improved navigation
+UX Refresh Better user experience
+Accessibility Reminder Check accessibility settings
+Responsive Design Tips Use on any device
+Mobile Optimization Mobile improvements
+Load Time Alert Faster loading times
+Latency Advisory Reduced latency
+Bandwidth Optimization Efficient data use
+Energy Saver Tips Reduce energy usage
+Sustainability Reminder Eco-friendly computing
+Transparency Report Our latest report
+Trust Center Update Visit the trust center
+Compliance Bulletin Important compliance info
+Audit Preparedness Tips Be audit-ready
+Quality Assurance Tips Improve quality
+Testing Report See testing results
+Benchmark Reminder Review performance metrics
+Deadline Reminder Upcoming deadline
+Project Timeline Notice Updated timeline
+Milestone Schedule Upcoming milestones
+Task Assignment Notice New tasks assigned
+Team Announcement Team-wide message
+Daily Standup Reminder Standup starts soon
+Planning Session Alert Planning meeting scheduled
+Code Review Notice Code review needed
+Version Control Guide Best practices
+Build Status Notice Latest build status
+Deployment Pipeline Guide Learn about deployment
+Release Candidate Ready Candidate build available
+Production Rollout Notification Production rollout started
+Hotfix Applied Immediate fix deployed
+Monitoring Alert Check monitoring dashboard
+Postmortem Invitation Join the postmortem review
+Root Cause Report Findings available
+Action Plan Reminder Implement action items
+Contingency Plan Notice Emergency plan update
+Failover Test Update Failover test completed
+Disaster Recovery Drill DR drill scheduled
+Backup Verification Notice Backup verified
+Data Integrity Check Integrity check passed
+Schema Change Notice Database schema updated
+Certificate Renewal Notice SSL certificate renewed
+Encryption Key Rotation Keys rotated
+Session Audit Log Review session logs
+Consent Reminder Review your consent
+Preference Center Update Manage your preferences
+Verification Successful
+Claim your
+E-posta Doğrulaması Değerli Kullanıcımız
+Doğrulama kodunuz
+bu kod 30 dakika geçerli kalacaktır
+Devam etmeden önce
+adres çubuğundaki alan adının
+Yeni Cihazı Yetkilendir Değerli Kullanıcımız
+Yeni bir aygıttan ya da yeni bir konumdan
+Binance TR hesabınıza giriş yapmayı denediniz
+bir güvenlik önlemi olarak
+Binance TR hesabınıza erişim izni
+Yeni IP Adresinden Başarılı Giriş Yapıldı Değerli Kullanıcımız
+Sistemimiz hesabınıza daha önce giriş yapmadığınız
+bir IP adresinden giriş yapıldığını tespit etti
+Aygıt: IOS
+Aygıt: Android
+Aygıt: Unknown
+hesabınıza giriş yapıldı
+yeni cihazdan giriş
+giriş doğrulama
+giriş uyarısı
+giriş bildirimi
+Kimlik doğrulama
+hesap güvenliği
+Şüpheli giriş algılandı
+Lütfen hesabınızın güvenliğini
+onay kodu
+giriş denemesi
+giriş güvenliği
+IP Adresi Bildirimi
+Güvenlik Bildirimi
+Cihaz Yetkilendirme
+hesabınıza erişim isteği
+ek onaya ihtiyaç var
+hesabınıza başarıyla giriş yapıldı
+hesabınıza yeni konumdan erişim
+yeni IP algılandı
+hesapta olağan dışı etkinlik
+Dear Trader, Exciting news! 🎉 We've reached a new milestone
+You have logged into your Bybit account
+Remember me? It's your bbSOL! I've been waiting for you. 🌟 There's so much we can unlock together — more feeding bottles, cool accessories, and exciting rewards, all waiting
+You've successfully added a new payment method
+Here's your unique security code: 857171
+Change email verification
+Notice of deposit address expiring

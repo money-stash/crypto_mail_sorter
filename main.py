@@ -13,12 +13,23 @@ def main():
         if filename.endswith(".txt"):
             full_path = os.path.join(folder_path, filename)
 
-            with open(full_path, "r") as f:
-                line = f.readline()
-                if "paranoid_checker" in line:
+            try:
+                with open(full_path, "r", encoding="utf-8") as f:
+                    lines = f.readlines()
+            except:
+                continue
+
+            if any("body:" in line.lower() for line in lines):
+                try:
                     remove_messages_paranoid(full_path)
-                elif "Simple Checker" in line:
+                except:
+                    pass
+
+            if any("snippet:" in line.lower() for line in lines):
+                try:
                     remove_messages_simple(full_path)
+                except:
+                    pass
 
 
 if __name__ == "__main__":

@@ -40,17 +40,21 @@ def remove_messages_simple(txt_path):
     logger.debug(f"total lines before filter: {len(lines)}")
 
     cleaned_output = []
-    empty = False
+    current_block = []
 
     for line in output:
-        if line.strip() == "":
-            if not empty:
+        if line.startswith("From:") and current_block:
+            if cleaned_output:
                 cleaned_output.append("\n")
-            empty = True
-
+            cleaned_output.extend(current_block)
+            current_block = [line]
         else:
-            cleaned_output.append(line)
-            empty = False
+            current_block.append(line)
+
+    if current_block:
+        if cleaned_output:
+            cleaned_output.append("\n")
+        cleaned_output.extend(current_block)
 
     with open(full_path, "w", encoding="utf-8") as f:
         f.writelines(cleaned_output)
@@ -72,7 +76,3 @@ def process_all_files():
         if filename.endswith(".txt"):
             full_path = os.path.join(folder_path, filename)
             remove_messages_simple(full_path)
-
-
-# if __name__ == "__main__":
-#     process_all_files()
