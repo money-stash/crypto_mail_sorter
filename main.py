@@ -1,7 +1,10 @@
 import os
 
-from cleaners.paranoid_cleaner import remove_messages_paranoid
-from cleaners.simple_cleaner import remove_messages_simple
+# from cleaners.paranoid_cleaner import remove_messages_paranoid
+# from cleaners.simple_cleaner import remove_messages_simple
+
+from cleaners.paranoid_ban_words_cleaner import remove_messages_paranoid
+from cleaners.simple_ban_words_cleaner import remove_messages_simple
 
 
 def main():
