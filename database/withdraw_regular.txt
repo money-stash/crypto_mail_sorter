@@ -1,2 +1,4 @@
 withdrawn ([\d,]+\.\d+)\s*([A-Z]{3,5})
 Withdrawal amount:\s*([\d,]+\.\d+)\s*([A-Z]{3,5})
+Withdrawal Successful.*?(\\d+\\.\\d+)\\s*(USDT)
+efetuou um saque de (\\d+\\.\\d+) BRL

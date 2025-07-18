@@ -1,2 +1,3 @@
 Transaction Amount:\s*([\d,]+\.\d+|\d+)\s*([A-Z]{3,5})
 appeal.*?amount of ([\d,]+\.\d+)\s*([A-Z]{3,5})
+([\d.]+)\s*([A-Z]{2,5})is now in your account

@@ -1,7 +1,7 @@
 import re, time, json
 from pathlib import Path
 from utils.logger import logger
-from utils.pollinations_utils import ask_ai
+from utils.pollinations_utils import ask_ai_with_fallback
 from utils.file_utils import (
     add_ban_word,
     remove_messages_by_snippet_match_simple,
@@ -56,25 +56,38 @@ def extract_transaction_info(text: str):
         return False
 
     try:
-        ai_answer = ask_ai(
+        ai_answer = ask_ai_with_fallback(
             f"""Проанализируй полностью вот это сообщение. 
-    Если в нём ЯВНО УКАЗАНЫ сумма и валюта или криптовалюта (например: 120 USDT, 0.005 BTC, 90000 SHIB), 
-    верни JSON-объект в формате: {{reg: регулярка, type: тип}}, 
-    где reg — регулярка с двумя группами (сумма и валюта), 
-    а type — один из: deposit, withdraw, p2p.
+Если оно ДЕЙСТВИТЕЛЬНО ЯВЛЯЕТСЯ финансовой транзакцией (депозит, вывод или P2P сделка)
+⚠️ ВАЖНО:
+— AI должен считать сообщение транзакцией ТОЛЬКО если в сообщении есть контекст, явно указывающий на движение средств (например: вывод, депозит, перевод, получение, отправка и т.п.).
+— Если это просто ваучер, акция, купон, бонус, промо, новость, уведомление или объявление — даже если там есть крипта или сумма — это всё равно trash.
+— НЕ считай сообщение транзакцией только из-за наличия суммы и крипты, если по смыслу это НЕ операция (например: новость, рекламное уведомление, обновление, акция, купон, бонус, ваучер и т.п.) — тогда это trash.
+- НЕ пиши уточняющие слова из сообщения, например время и дату, а только то, что нужно для понимания, что это мусорное сообщение.(обобщённо, без лишних деталей).
 
-    ЕСЛИ В СООБЩЕНИИ НЕ НАПИСАНА КРИПТА ИЛИ ВАЛЮТА — это мусор. 
-    В таком случае верни JSON в формате: {{reg: текст из сообщения, по которому можно будет в будущем понять, что оно мусорное, type: trash}}. 
-    НЕ ВОЗВРАЩАЙ РЕГУЛЯРКУ ДЛЯ МУСОРА, ТОЛЬКО ХАРАКТЕРНУЮ ФРАЗУ ИЗ ТЕКСТА.
+Если сообщение НЕ является транзакцией, даже если в нём есть крипта или сумма — верни JSON:
+{{reg: текст из сообщения, по которому можно будет в будущем понять, что оно мусорное, type: trash}}
 
-    Сообщение:
-    {text}
-    """
+Сообщение:
+{text}
+"""
         )
-        match = re.search(r'\{.*?"type":\s*".+?".*?\}', ai_answer, re.DOTALL)
+        print(ai_answer)
+
+        fixed_json = re.sub(r"([{,]\s*)(\w+)(\s*:\s*)", r'\1"\2"\3', ai_answer)
+        fixed_json = re.sub(r":\s*([a-zA-Z_]+)([,\}])", r': "\1"\2', fixed_json)
+
+        match = re.search(r'\{.*?"type":\s*".+?".*?\}', fixed_json, re.DOTALL)
         if match:
-            parsed = json.loads(match.group())
-            return {"type": parsed["type"], "reg": parsed["reg"]}
+            try:
+                parsed = json.loads(match.group())
+                if parsed["type"] == "trash":
+                    cleaned = re.split(r"\\?\([^)]+\\?\)", parsed["reg"])[0].strip()
+                    parsed["reg"] = cleaned
+                return {"type": parsed["type"], "reg": parsed["reg"]}
+            except json.JSONDecodeError as e:
+                logger.error(f"JSON decode failed: {e}")
+                raise ValueError("Invalid JSON after fixing formatting")
         else:
             raise ValueError("No valid JSON found in AI response")
 
@@ -86,13 +99,6 @@ def extract_transaction_info(text: str):
 def process_withdrawals_from_file(file_path: str, checker_name: str):
     with open(file_path, "r", encoding="utf-8") as f:
         # чистим ещё раз файл
-        with open(BODIES, "r", encoding="utf-8") as booi:
-            boodies_lines = booi.readlines()
-            if checker_name == "simple":
-                remove_messages_by_snippet_match_simple(file_path, boodies_lines)
-            else:
-                remove_messages_by_snippet_match_paranoid(file_path, boodies_lines)
-
         res_for_ai = []
         for line in f:
             if line.startswith("Body: "):
@@ -100,17 +106,27 @@ def process_withdrawals_from_file(file_path: str, checker_name: str):
                 result = extract_transaction_info(text)
 
                 if result:
-                    # если вернуло словарь - отвечала нейронка
-                    if isinstance(result, dict):
-                        if result["type"] == "trash":
+                    if isinstance(result, dict) and result["type"] == "trash":
+                        with open(BODIES, "r", encoding="utf-8") as booi:
+                            boodies_lines = [
+                                line.strip() for line in booi if line.strip()
+                            ]
+                        if not any(
+                            result["reg"].strip() in line.strip()
+                            for line in boodies_lines
+                        ):
                             remove_messages_by_snippet_match_paranoid(
                                 file_path, target_snippet=[result["reg"]]
                             )
-                            print(f"УДАЛИЛИ: {result['reg']}")
+                            logger.info(f"УДАЛИЛ: {result['reg']}")
                             add_ban_word(result["reg"])
                             time.sleep(10)
-                            return
+                            continue
 
+                    print("------------")
+                    print(text)
+                    # logger.info(f"ДОБАВИЛ ТРАНЗУ: {result}")
+                    print("------------")
                     res_for_ai.append(result)
 
             elif line.startswith("Snippet: "):
@@ -118,30 +134,41 @@ def process_withdrawals_from_file(file_path: str, checker_name: str):
                 result = extract_transaction_info(text)
 
                 if result:
-                    if isinstance(result, dict):
-                        if result["type"] == "trash":
+                    if isinstance(result, dict) and result["type"] == "trash":
+                        with open(BODIES, "r", encoding="utf-8") as booi:
+                            boodies_lines = [
+                                line.strip() for line in booi if line.strip()
+                            ]
+                        if not any(
+                            result["reg"].strip() in line.strip()
+                            for line in boodies_lines
+                        ):
                             remove_messages_by_snippet_match_simple(
                                 file_path, target_snippet=[result["reg"]]
                             )
-                            print(f"УДАЛИЛИ: {result['reg']}")
+                            logger.info(f"УДАЛИЛ: {result['reg']}")
                             add_ban_word(result["reg"])
                             time.sleep(10)
-                            return
+                            continue
 
+                    print("------------")
+                    print(text)
+                    logger.info(f"ДОБАВИЛ ТРАНЗУ: {result}")
+                    print("------------")
                     res_for_ai.append(result)
 
         # пред угадываем балик
         if len(res_for_ai) > 5:
-            ai_answer = ask_ai(
-                text=f"Проанализируй вот эти данные с криптобиржи человека, и постарайся предугадать примерный баланс в $(ВОЗВРАЩАЙ ТОЛЬКО ЧИСЛО В ДОЛЛАРАХ, БОЛЬШЕ, НИЧЕГО НЕ ПИШИ!):\n\n{res_for_ai}"
+            ai_answer = ask_ai_with_fallback(
+                text=f"Проанализируй вот эти данные с криптобиржи человека, и постарайся предугадать примерный баланс в. Не считай транзакции, они могут быть только на вывод, прирное число баланса $(ВОЗВРАЩАЙ ТОЛЬКО ЧИСЛО В ДОЛЛАРАХ, БОЛЬШЕ, НИЧЕГО НЕ ПИШИ!):\n\n{res_for_ai}"
             )
-            print(ai_answer)
-            parsed = json.loads(ai_answer)
-            print(parsed["type"])
-            time.sleep(100)
+            logger.info(ai_answer)
+
+            return ai_answer
 
 
-process_withdrawals_from_file(
-    "dirty_logs/(100 advance_filter)_(dungtrananh39@gmail.com)_(u0)_VN.txt",
-    "paranoid",
-)
+# file_balance = process_withdrawals_from_file(
+#     "dirty_logs/1452_do_not_reply@ses_binance_com_tadas_svaikevicius@ozogimnazija.txt",
+#     "paranoid",
+# )
+# print(f"FILE BALANCE: {file_balance}")
