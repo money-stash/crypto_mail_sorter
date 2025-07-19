@@ -1,6 +1,0 @@
-```plaintext
-200.0 + 9.99 + 9.99 + 39.96  10.0 + 19.7  389.81 + 20.269174 + 61.400872 = 480.485954
-``` | dirty_logs/[39 do-not-reply@ses.binance.com] [tuepro987@gmail.com] [index 0] [14.188.166.61]_Tjem-wT.txt
-```plaintext
-0
-``` | dirty_logs/[33 do-not-reply@ses.binance.com] [colapinza187@gmail.com] [index 0] [179.63.37.154]_wOfdwQE.txt

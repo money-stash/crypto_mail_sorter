@@ -16,9 +16,10 @@ def save_result(file_balance, full_path):
 
 def main():
     folder_path = "dirty_logs/"
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".txt"):
-            full_path = os.path.join(folder_path, filename)
+    for root, _, files in os.walk(folder_path):
+        for filename in files:
+            if filename.endswith(".txt"):
+                full_path = os.path.join(root, filename)
 
             try:
                 with open(full_path, "r", encoding="utf-8") as f:
