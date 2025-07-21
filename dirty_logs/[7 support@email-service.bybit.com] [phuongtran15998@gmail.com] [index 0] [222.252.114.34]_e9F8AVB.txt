@@ -1,0 +1,5 @@
+Title: [Bybit]Yêu Cầu Rút Tiền Đã Hoàn Thành
+Body: Thân gửi Trader, Lệnh rút tiền của bạn đã được cập nhật thành: Đã gửi. Bạn có thể xem chi tiết trên blockchain. Thông tin như sau: Số tiền rút: 104.0609 USDT Loại Chuỗi: TRC20 Địa chỉ rút tiền:
+
+Title: [Bybit]Rút tiền thành công
+Body: Thân gửi nhà giao dịch Bybit, Bạn đã rút thành công 104.0609 USDT từ tài khoản Bybit của mình. Loại Chuỗi: TRC20 Địa chỉ rút tiền của bạn: TQzLD9PtADUrZyWkdhAYy53icBBgC8qoz4 TXID:

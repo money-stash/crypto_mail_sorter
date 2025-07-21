@@ -1,0 +1,9 @@
+$0 | dirty_logs/[23 do-not-reply@ses.binance.com] [elenamoga92@gmail.com] [index 0] [86.123.229.118]_lL_C1t5.txt
+163653.25 | dirty_logs/1452_do_not_reply@ses_binance_com_tadas_svaikevicius@ozogimnazija.txt
+24710.17 | dirty_logs/[138 no-reply@coinbase.com] [thillaivideo@gmail.com] [index 0] [111.223.178.31]_BOaq1HX.txt
+68.4 | dirty_logs/[23 noreply@notice.bingx.com] [thanhthuy091190@gmail.com] [index 0] [171.237.195.5]_1vx4ZqV.txt
+201.668782 | dirty_logs/[18 no-reply@kucoin.com] [alcinjonas5@gmail.com] [index 1] [186.189.85.251]_gAZHALk.txt
+120.18 | dirty_logs/[90 do-not-reply@ses.binance.com] [salah878740@gmail.com] [index 0] [156.207.112.20]_I7KEH29.txt
+220.01 | dirty_logs/[39 do-not-reply@ses.binance.com] [tuepro987@gmail.com] [index 0] [14.188.166.61]_Tjem-wT.txt
+1.50 | dirty_logs/[34 no-reply@coinbase.com] [millerhernandezm.802@gmail.com] [index 0] [191.95.134.124]_hvha88H.txt
+28055.97 | dirty_logs/[66 no-reply@coinbase.com] [ivomajik@gmail.com] [index 0] [216.128.17.116]_lPRN-Zi.txt

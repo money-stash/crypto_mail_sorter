@@ -885,7 +885,6 @@ Binance Pay Transaction.*Amount:\s*
 Binance Pay Transaction.*Amount:
 Upcoming listing announcement for SMILE/USDT
 upcoming listing of SMILE/USDT
-SOL network withdrawal
 You have successfully added a passkey to your Binance account
 Important update; please read.*?notify you that
 Create New API Key.*?You attempted to create a new API key
@@ -898,8 +897,6 @@ Your Binance Visa Card is on its way! We've got great news for you! Your physica
 Card Ordered We've got great news for you! Your virtual Binance Visa Card has been issued and is now ready for immediate online use. We will notify you shortly once your physical card is on its way
 Verification Unsuccessful Sorry, you did not pass the review process. The reason for failure is as follows: Your proof of address does not meet our requirements. Please resubmit a bank account
 Binance Purchase Success Your purchase of
-Confirm your Withdrawal/Transfer
-Confirm your Withdrawal/Transfer
 Please review your Convert order.
 Please review your sign-in activity.
 Review login activity from a new IP address.
@@ -940,8 +937,6 @@ login attempt from an unknown browser
 login attempt, verify your device
 email address already in use, attempt to create account
 Fiat Deposit Failed
-Fiat Withdrawal Successful
-Binance Sell Success
 Phishing message detected
 Insufficient balance
 Withdrawal Failed
@@ -984,17 +979,75 @@ Verificación de inicio de sesión, código de verificación
 Contraseña cambiada, contraseña vinculada a tu cuenta de Binance se ha actualizado
 Restablecer contraseña, has solicitado restablecer la contraseña vinculada a tu cuenta
 Código de verificación, código de verificación válido durante 30 minutos
-Depósito completado, depósito por valor de 101.85 USDT está ya disponible
-Depósito completado, depósito por valor de 194 USDT está ya disponible
-Depósito completado, depósito por valor de 291 USDT está ya disponible
-Retiro completado, retiro por valor de 39.00000000 USDT desde tu cuenta
-Has abierto una solicitud de retiro por valor de 40 USDT
-Has vinculado correctamente tu cuenta de Binance a tu cuenta de Google/Apple
-Solicitaste el restablecimiento de la contraseña vinculada con tu cuenta de Binance
-Retiraste correctamente 179605.18 ARS
-Retiraste correctamente 21092.35 ARS
-Depósito fiat completado, depósito de 100000 ARS ya está disponible
-Retiraste correctamente 957883.87 ARS
-Depósito fiat completado, depósito de 1000000 ARS ya está disponible
-Depósito completado, depósito de 71.671309 USDT ya está disponible
-Retiraste correctamente 95.92394400 USDT de tu cuenta
+Login Attempted from New IP address
+Kỷ Niệm 6 Năm Của Bybit
+Chương Trình Giới Thiệu
+Coinbase takes a number of steps
+fix it so you can start investing
+start investing in crypto
+sign into your Coinbase account
+updating our User Agreement
+updating our Terms of Service
+updating its Privacy Policy
+updated our user agreement
+account login request from Coinbase Android App
+requesting access to your account
+Rủi ro vị thế ký quỹ riêng ADAUSDT
+BingX
+Mức rủi ro tài khoản ký quỹ USDT
+Bạn đã thêm thành công địa chỉ rút tiền
+Tài khoản của bạn đã cài đặt Mật khẩu quỹ thành công
+Cảm ơn bạn đã tham gia BingX!
+đang đăng nhập từ địa chỉ IP mới
+Has recibido un cupón de reducción de futuros
+This verification code is used for withdrawal
+Your KYC verification has been approved
+your request of identity verification has been denied
+You have received 20 USDT trading fee deduction coupon
+You have successfully enabled the Contract Trading
+you did not pass the KYC verification
+You have reset the trading password
+Verification code
+Spot Grid Exceeds Price Range Notification
+Your copy of 飞哥旅行记 portfolio has been closed
+Your copied portfolio 飞哥旅行记 has transferred 60000.27124699
+Your copied portfolio 飞哥旅行记 has transferred 30307.59561409
+Your copy of order BROCCOLIF3BUSDT contract in 飞哥旅行记 portfolio failed
+Your privacy is a critical priority for Coinbase
+Hemos verificado su cuenta. Todo está listo para que pueda invertir
+el mundo de las criptomonedas es más sencillo
+No content
+Bạn đang thêm mật khẩu quỹ
+You've logged into the Bybit account from a new device
+Your card ending in 4406 has expired
+your card ending in 5575 has been removed from your Coinbase account
+BTC is at €21201.28
+BTC is at €20340.83
+A recent sign-in attempt to your Coinbase account came from a device we don't recognize
+BTC is at €19180.97
+BTC is at
+Bitcoin (BTC) is up
+37ZKQQ7GSD
+Your Coinbase account recovery is successful
+Your 2-step verification settings have been changed
+You recently initiated an account recovery on Coinbase
+We've verified your account. You're all ready to invest in crypto
+we have delayed the send transaction
+You've requested to reset security items
+You attempted to reset your security methods
+You have successfully added the payment method
+Win up to 1 ETH with every chance
+Only 3 days left for $800000 in rewards
+Due to the cessation of HECO Chain operations
+Invite friends in South Asia and Africa to sign up
+With a 100 USDT Futures Position Airdrop reward
+This is your verification code
+A login to your MEXC account was recorded
+Thank you for signing up on MEXC
+You have passed the MEXC KYC verification
+Your identity has been verified
+This is your verification code: 071300
+Your MEXC deposit address information is as follows
+This is your verification code: 039390
+Unlock Your Welcome Bonus Up to 8000 USDT
+This is your verification code 903936
