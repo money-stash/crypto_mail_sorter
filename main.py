@@ -1,4 +1,5 @@
 import os
+import chardet
 
 # from cleaners.paranoid_cleaner import remove_messages_paranoid
 # from cleaners.simple_cleaner import remove_messages_simple
@@ -22,9 +23,14 @@ def main():
                 full_path = os.path.join(root, filename)
 
             try:
-                with open(full_path, "r", encoding="utf-8") as f:
-                    lines = f.readlines()
-            except:
+                with open(full_path, "rb") as raw_f:
+                    raw_data = raw_f.read()
+                    detected = chardet.detect(raw_data)
+                    encoding = detected["encoding"] or "utf-8"
+                    text = raw_data.decode(encoding, errors="replace")
+                    lines = text.splitlines()
+            except Exception as ex:
+                print(f"Error while reading file: {full_path}: {ex}")
                 continue
 
             if any("body:" in line.lower() for line in lines):
@@ -37,8 +43,9 @@ def main():
                         continue
                     save_result(file_balance, full_path)
 
-                except:
-                    pass
+                except Exception as ex:
+                    print(f"Error while proccessing body: {full_path}: {ex}")
+                    continue
 
             if any("snippet:" in line.lower() for line in lines):
                 try:
@@ -50,8 +57,9 @@ def main():
                         continue
                     save_result(file_balance, full_path)
 
-                except:
-                    pass
+                except Exception as ex:
+                    print(f"Error while proccessing snippet: {full_path}: {ex}")
+                    continue
 
 
 if __name__ == "__main__":

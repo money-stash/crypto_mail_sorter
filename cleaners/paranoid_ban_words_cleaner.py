@@ -1,13 +1,28 @@
 import os
+import chardet
 from utils.logger import logger
-from database.config import LOGS_FOLDER, BODIES
+from database.config import BODIES
+
+
+def detect_encoding(file_path):
+    """Определяет кодировку файла"""
+    try:
+        with open(file_path, "rb") as f:
+            raw_data = f.read()
+            detected = chardet.detect(raw_data)
+            return detected["encoding"] or "utf-8"
+    except:
+        return "utf-8"
 
 
 def remove_messages_paranoid(txt_path):
     full_path = f"{txt_path}"
 
     logger.info(f"start processing: {full_path}")
-    with open(full_path, "r", encoding="utf-8") as f:
+
+    encoding = detect_encoding(full_path)
+
+    with open(full_path, "r", encoding=encoding, errors="replace") as f:
         lines = f.readlines()
 
     if len(lines) > 10:
@@ -16,7 +31,8 @@ def remove_messages_paranoid(txt_path):
         elif "Title:" in lines[10]:
             lines = lines[10:]
 
-    with open(BODIES, "r", encoding="utf-8") as f:
+    ban_encoding = detect_encoding(BODIES)
+    with open(BODIES, "r", encoding=ban_encoding, errors="replace") as f:
         ban_words = [line.strip() for line in f if line.strip()]
 
     output = []
@@ -60,7 +76,7 @@ def remove_messages_paranoid(txt_path):
             cleaned_output.append(line)
             empty = False
 
-    with open(full_path, "w", encoding="utf-8") as f:
+    with open(full_path, "w", encoding=encoding, errors="replace") as f:
         f.writelines(cleaned_output)
         logger.info(f"saved cleaned file: {full_path}")
         logger.info(f"total lines after cleanup: {len(cleaned_output)}")
@@ -77,7 +93,3 @@ def process_all_files():
         if filename.endswith(".txt"):
             full_path = os.path.join(folder_path, filename)
             remove_messages_paranoid(full_path)
-
-
-# if __name__ == "__main__":
-#     process_all_files()
