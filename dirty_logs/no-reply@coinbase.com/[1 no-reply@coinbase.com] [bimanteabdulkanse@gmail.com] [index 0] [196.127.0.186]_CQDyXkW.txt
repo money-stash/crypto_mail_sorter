@@ -1,18 +1,5 @@
-Telegram: https://t.me/paranoid_checker
-Support: https://t.me/Checker_Support
-Support Bot: https://t.me/Checker_Support_Bot
-
-Gmail:
-
-Email: bimanteabdulkanse@gmail.com
-Address: https://mail.google.com/mail/u/0/
-Index: 0
-Accounts: 1
-Emails:
 Title: Veuillez vérifier votre adresse e-mail
 Body: Avec Coinbase, gérez les cryptomonnaies en toute simplicité ! Vérifiez votre adresse e-mail Merci de confirmer votre adresse e-mail afin d'activer votre compte Coinbase. Confirmer mon adresse e-
-
-
 
 .google.com	TRUE	/intl	FALSE	1757196924	_ga	GA1.2-2.1292054830.1722636920
 .google.com	TRUE	/intl	FALSE	1757197146	_ga_3WTQFP9ECQ	GS1.1-2.1722636919.1.0.1722637145.0.0.0
