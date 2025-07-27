@@ -50,8 +50,11 @@ def remove_messages_paranoid(txt_path):
                 i += 1
 
             body_line = next((l for l in block_lines if l.startswith("Body:")), "")
+            body_content = body_line.strip()[5:].strip()
 
-            if not any(ban_word in body_line for ban_word in ban_words):
+            if body_content and not any(
+                ban_word in body_line for ban_word in ban_words
+            ):
                 output.extend(block_lines)
 
         elif line.startswith("Body:"):
