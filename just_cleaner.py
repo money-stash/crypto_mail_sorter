@@ -11,8 +11,7 @@ def save_result(file_balance, full_path):
         f.write(f"{str_file_balance} | {full_path}\n")
 
 
-def main():
-    folder_path = "dirty_logs/"
+def main_cleaner(folder_path="dirty_logs/"):
     for root, _, files in os.walk(folder_path):
         for filename in files:
             if filename.endswith(".txt"):
@@ -64,5 +63,5 @@ def main():
                         continue
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main(folder_path="dirty_logs/")
