@@ -9,11 +9,18 @@ import subprocess
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message, FSInputFile
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
+from aiogram.fsm.storage.memory import MemoryStorage
 from database.config import BOT_TOKEN
 from just_cleaner import main_cleaner
 
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
+dp = Dispatcher(storage=MemoryStorage())
+
+
+class ZipNameState(StatesGroup):
+    waiting_for_name = State()
 
 
 def _which(*tools):
@@ -53,11 +60,11 @@ def _extract_rar(file_path: str, out_dir: str):
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
-    await message.answer("Send me a .zip or .rar archive.")
+    await message.answer("Отправьте мне .zip или .rar архив.")
 
 
 @dp.message(F.document)
-async def handle_archive(message: Message):
+async def handle_archive(message: Message, state: FSMContext):
     document = message.document
     file_name = document.file_name
     ext = os.path.splitext(file_name)[1].lower()
@@ -98,22 +105,43 @@ async def handle_archive(message: Message):
     if os.path.isdir(macosx_dir):
         shutil.rmtree(macosx_dir, ignore_errors=True)
 
-    await message.answer("Archive extracted successfully. Starting cleaning process...")
+    await state.update_data(folder=folder)
+    await message.answer("Введите имя ZIP-файла (без .zip):")
+    await state.set_state(ZipNameState.waiting_for_name)
+    return
 
+
+@dp.message(ZipNameState.waiting_for_name)
+async def receive_zip_name(message: Message, state: FSMContext):
+    data = await state.get_data()
+    folder = data.get("folder")
+    if not folder or not os.path.isdir(folder):
+        await state.clear()
+        await message.answer("Сессия не найдена. Отправьте архив заново.")
+        return
+
+    name = (message.text or "").strip()
+    safe = "".join(c for c in name if c.isalnum() or c in ("-", "_", " "))
+    if not safe:
+        safe = "archive"
+
+    await message.answer("Архив распакован. Начинаю очистку...")
     try:
-        main_cleaner(folder_path=folder)
-    except Exception as e:
-        await message.answer(f"Cleaner error: {e}")
+        try:
+            main_cleaner(folder_path=folder)
+        except Exception as e:
+            await message.answer(f"Cleaner error: {e}")
 
-    archive_path = shutil.make_archive(folder, "zip", folder)
-
-    await message.reply_document(FSInputFile(archive_path))
-
-    try:
-        os.remove(archive_path)
-    except Exception:
-        pass
-    shutil.rmtree(folder, ignore_errors=True)
+        base = os.path.join(folder, safe)
+        archive_path = shutil.make_archive(base, "zip", folder)
+        await message.reply_document(FSInputFile(archive_path))
+    finally:
+        try:
+            os.remove(archive_path)
+        except Exception:
+            pass
+        shutil.rmtree(folder, ignore_errors=True)
+        await state.clear()
 
 
 async def main():
