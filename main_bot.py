@@ -1,5 +1,4 @@
 import os
-import uuid
 import zipfile
 import shutil
 import asyncio
@@ -31,17 +30,29 @@ def _which(*tools):
     return None
 
 
+def _pick_7z():
+    candidates = [
+        r"C:\Program Files\7-Zip\7z.exe",
+        r"C:\Program Files (x86)\7-Zip\7z.exe",
+    ]
+    for path in candidates:
+        if os.path.isfile(path):
+            return path
+    return _which("7z", "7zz", "7zzs")
+
+
 def _extract_rar(file_path: str, out_dir: str):
-    tool = _which("unar") or _which("7z", "7zz", "7zzs") or _which("unrar")
+    tool = _which("unar") or _pick_7z() or _which("unrar")
     if not tool:
         raise RuntimeError("No RAR extractor found. Install unar or 7zip or unrar.")
-    if os.path.basename(tool).lower().startswith("unar"):
+    name = os.path.basename(tool).lower()
+    if "unar" in name:
         r = subprocess.run(
             [tool, "-force-overwrite", "-quiet", "-o", out_dir, file_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
-    elif os.path.basename(tool).lower().startswith(("7z", "7zz")):
+    elif "7z" in name or "7zz" in name:
         r = subprocess.run(
             [tool, "x", "-y", f"-o{out_dir}", file_path],
             stdout=subprocess.PIPE,
@@ -108,7 +119,6 @@ async def handle_archive(message: Message, state: FSMContext):
     await state.update_data(folder=folder)
     await message.answer("Введите имя ZIP-файла (без .zip):")
     await state.set_state(ZipNameState.waiting_for_name)
-    return
 
 
 @dp.message(ZipNameState.waiting_for_name)
@@ -126,6 +136,7 @@ async def receive_zip_name(message: Message, state: FSMContext):
         safe = "archive"
 
     await message.answer("Архив распакован. Начинаю очистку...")
+    archive_path = None
     try:
         try:
             main_cleaner(folder_path=folder)
@@ -136,10 +147,11 @@ async def receive_zip_name(message: Message, state: FSMContext):
         archive_path = shutil.make_archive(base, "zip", folder)
         await message.reply_document(FSInputFile(archive_path))
     finally:
-        try:
-            os.remove(archive_path)
-        except Exception:
-            pass
+        if archive_path and os.path.exists(archive_path):
+            try:
+                os.remove(archive_path)
+            except Exception:
+                pass
         shutil.rmtree(folder, ignore_errors=True)
         await state.clear()
 
