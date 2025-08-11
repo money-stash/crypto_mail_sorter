@@ -131,7 +131,7 @@ async def receive_zip_name(message: Message, state: FSMContext):
         return
 
     name = (message.text or "").strip()
-    safe = "".join(c for c in name if c.isalnum() or c in ("-", "_", " "))
+    safe = "".join(c for c in name if c.isalnum() or c in ("-", "_", " ", ".", ","))
     if not safe:
         safe = "archive"
 
