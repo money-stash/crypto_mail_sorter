@@ -13,7 +13,12 @@ from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.client.telegram import TelegramAPIServer
-from database.config import BOT_TOKEN, OUTPUT_CHANNEL_ID, GOOGLE_SHEET_URL
+from database.config import (
+    BOT_TOKEN,
+    OUTPUT_CHANNEL_LOGS_ID,
+    OUTPUT_CHANNEL_TXT_ID,
+    GOOGLE_SHEET_URL,
+)
 from just_cleaner import main_cleaner
 from utils.bot_utils import (
     get_all_files_in_archive,
@@ -262,7 +267,7 @@ async def handle_logs_archive(message: Message):
 
             try:
                 await bot.send_document(
-                    chat_id=OUTPUT_CHANNEL_ID,
+                    chat_id=OUTPUT_CHANNEL_LOGS_ID,
                     document=FSInputFile(archive_path),
                     caption=caption,
                 )
@@ -381,7 +386,7 @@ async def handle_archive(message: Message):
 
         try:
             await bot.send_document(
-                chat_id=OUTPUT_CHANNEL_ID,
+                chat_id=OUTPUT_CHANNEL_TXT_ID,
                 document=FSInputFile(archive_path),
                 caption=caption,
             )
@@ -409,7 +414,7 @@ async def handle_archive(message: Message):
 async def main():
     print(f"🚀 Бот запущен")
     print(f"📊 Макс размер: 2000 МБ")
-    print(f"📤 Канал: {OUTPUT_CHANNEL_ID}")
+    print(f"📤 Канал: {OUTPUT_CHANNEL_TXT_ID}")
     await dp.start_polling(bot)
 
 
