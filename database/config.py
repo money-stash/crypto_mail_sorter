@@ -6,4 +6,9 @@ DEPOSIT_REG = "database/deposit_regular.txt"
 TRASH_REG = "database/trash_regular.txt"
 
 DEEPSEEK_API = "sk-0eaaf2ad59d547939fafd9953f03e83e"
-BOT_TOKEN = "8193127329:AAFdctmZkETZMcg6d6-jrGMO8hBPDqaGbVs"
+BOT_TOKEN = "8156936879:AAGkopwiAUKqhoQ7WeWhVk88Mk6s5gbMffo"
+OUTPUT_CHANNEL_ID = "-1002378196415"
+CHAT_TAGS = {}  # Оставьте пустым
+
+GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1flmM2s_TwcDMNwAKWYb_qMOqQC1uyzcY8TSkNxtXsQg/edit?usp=sharing"
+GOOGLE_CREDENTIALS_FILE = "second-project.json"  # путь к  credentials
