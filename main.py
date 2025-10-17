@@ -59,7 +59,7 @@ def generate_pack_name(chat_id: int, tag: str, suffix: str = "pack") -> str:
     counter_key = f"{chat_id}-{now.strftime('%Y%m%d')}-{suffix}"
     daily_counters[counter_key] += 1
     pack_number = daily_counters[counter_key]
-    return f"{tag}-[{pack_number}]-{suffix}[{date_str}]"
+    return f"{tag}-{pack_number}-{suffix}-{date_str}"
 
 
 @dp.message(Command("start"))
@@ -94,6 +94,7 @@ async def handle_mails_archive(message: Message):
         f"📊 {size_mb:.2f} МБ\n"
         f"⏳ Скачивание..."
     )
+    await message.reply("Ваш архив принят в работу")
 
     folder = tempfile.mkdtemp(prefix="mails_")
     file_path = os.path.join(folder, file_name)
@@ -187,6 +188,7 @@ async def handle_logs_archive(message: Message):
         f"📊 {size_mb:.2f} МБ\n"
         f"⏳ Скачивание..."
     )
+    await message.reply("Ваш архив принят в работу")
 
     try:
         await bot.download(document, destination=file_path)
@@ -246,6 +248,7 @@ async def handle_logs_archive(message: Message):
             out_path = os.path.join(tempfile.gettempdir(), name + ".zip")
             zip_folder(folder_other, out_path)
             archives.append((out_path, name))
+            arch_list = "\n".join([f"✅ Архив упакован: {a[1]}.zip" for a in archives])
 
         if not archives:
             await status_msg.edit_text("⚠️ Нет папок для архивации")
@@ -270,6 +273,14 @@ async def handle_logs_archive(message: Message):
                     chat_id=OUTPUT_CHANNEL_LOGS_ID,
                     document=FSInputFile(archive_path),
                     caption=caption,
+                )
+                sent_list = "\n".join(
+                    [
+                        f"📤 Архив отправлен: {a[1]}.zip"
+                        for a in archives[
+                            : archives.index((archive_path, archive_name)) + 1
+                        ]
+                    ]
                 )
             except Exception as e:
                 await status_msg.edit_text(f"❌ Ошибка отправки: {e}")
@@ -318,6 +329,7 @@ async def handle_archive(message: Message):
     status_msg = await message.reply(
         f"📦 Обработка\n" f"📊 {size_mb:.2f} МБ\n" f"⏳ Скачивание..."
     )
+    await message.reply("Ваш архив принят в работу")
 
     folder = tempfile.mkdtemp(prefix="pack_")
     file_path = os.path.join(folder, file_name)
