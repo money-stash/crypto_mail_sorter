@@ -88,13 +88,15 @@ async def handle_mails_archive(message: Message):
     chat_title = message.chat.title or "Private"
 
     size_mb = file_size / (1024 * 1024)
-    status_msg = await message.reply(
-        f"📧 Обработка -mails архива\n"
-        f"📦 {file_name}\n"
-        f"📊 {size_mb:.2f} МБ\n"
-        f"⏳ Скачивание..."
+    status_msg = await bot.send_message(
+        chat_id=OUTPUT_CHANNEL_TXT_ID,
+        text=(
+            f"📧 Обработка -mails архива\n"
+            f"📦 {file_name}\n"
+            f"📊 {size_mb:.2f} МБ\n"
+            f"⏳ Скачивание..."
+        ),
     )
-    await message.reply("Ваш архив принят в работу")
 
     folder = tempfile.mkdtemp(prefix="mails_")
     file_path = os.path.join(folder, file_name)
@@ -182,13 +184,15 @@ async def handle_logs_archive(message: Message):
     file_path = os.path.join(folder, file_name)
 
     size_mb = file_size / (1024 * 1024)
-    status_msg = await message.reply(
-        f"📋 Обработка -logs архива\n"
-        f"📦 {file_name}\n"
-        f"📊 {size_mb:.2f} МБ\n"
-        f"⏳ Скачивание..."
+    status_msg = await bot.send_message(
+        chat_id=OUTPUT_CHANNEL_LOGS_ID,
+        text=(
+            f"📋 Обработка -logs архива\n"
+            f"📦 {file_name}\n"
+            f"📊 {size_mb:.2f} МБ\n"
+            f"⏳ Скачивание..."
+        ),
     )
-    await message.reply("Ваш архив принят в работу")
 
     try:
         await bot.download(document, destination=file_path)
@@ -326,10 +330,10 @@ async def handle_archive(message: Message):
     chat_tag = get_chat_tag(chat_id, chat_title)
 
     size_mb = file_size / (1024 * 1024)
-    status_msg = await message.reply(
-        f"📦 Обработка\n" f"📊 {size_mb:.2f} МБ\n" f"⏳ Скачивание..."
+    status_msg = await bot.send_message(
+        chat_id=OUTPUT_CHANNEL_TXT_ID,
+        text=(f"📦 Обработка\n" f"📊 {size_mb:.2f} МБ\n" f"⏳ Скачивание..."),
     )
-    await message.reply("Ваш архив принят в работу")
 
     folder = tempfile.mkdtemp(prefix="pack_")
     file_path = os.path.join(folder, file_name)
@@ -387,13 +391,17 @@ async def handle_archive(message: Message):
         base = os.path.join(folder, pack_name)
         archive_path = shutil.make_archive(base, "zip", folder)
 
-        result_size = os.path.getsize(archive_path)
-        result_mb = result_size / (1024 * 1024)
+        # Use the original size_mb calculated from the file_size
+        await status_msg.edit_text(f"✅ Готово ({size_mb:.2f} МБ)\n📤 Отправка...")
 
-        await status_msg.edit_text(f"✅ Готово ({result_mb:.2f} МБ)\n📤 Отправка...")
+        moscow_tz = pytz.timezone("Europe/Moscow")
+        now = datetime.now(moscow_tz)
+        time_str = now.strftime("%H:%M")
 
         caption = (
-            f"📦 {pack_name}.zip\n" f"🏷️ Чат: {chat_title}\n" f"📊 {result_mb:.2f} МБ"
+            f"📦 {pack_name}.zip\n"
+            f"⏰ Время сдачи: {time_str}\n"
+            f"📊 {size_mb:.2f} МБ"
         )
 
         try:
