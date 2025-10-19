@@ -18,6 +18,7 @@ from database.config import (
     OUTPUT_CHANNEL_LOGS_ID,
     OUTPUT_CHANNEL_TXT_ID,
     GOOGLE_SHEET_URL,
+    SUPPLIERS,
 )
 from just_cleaner import main_cleaner
 from utils.bot_utils import (
@@ -27,27 +28,24 @@ from utils.bot_utils import (
     get_or_create_sheet,
     write_to_sheet,
     _extract_rar,
-    get_chat_tag,
     zip_folder,
 )
 
 LOCAL_API_SERVER = "http://localhost:8081"
 local_api = TelegramAPIServer.from_base(LOCAL_API_SERVER, is_local=True)
 session = AiohttpSession(api=local_api)
-bot = Bot(token=BOT_TOKEN)  # , session=session
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
 daily_counters = defaultdict(int)
 
 
 def is_mails_archive(filename: str) -> bool:
-    """Проверяет, является ли файл -mails архивом"""
     filename_lower = filename.lower()
     return "-mails" in filename_lower
 
 
 def is_logs_archive(filename: str) -> bool:
-    """Проверяет, является ли файл -logs архивом"""
     filename_lower = filename.lower()
     return "-logs" in filename_lower
 
@@ -62,6 +60,18 @@ def generate_pack_name(chat_id: int, tag: str, suffix: str = "pack") -> str:
     return f"{tag}-{pack_number}-{suffix}-{date_str}"
 
 
+def choose_tag_for_destination(
+    chat_id: int, chat_title: str, destination: int | None = None
+) -> str:
+    supplier = SUPPLIERS.get(chat_id)
+    title = chat_title or "Private"
+    if not supplier:
+        return title
+    if destination in (OUTPUT_CHANNEL_TXT_ID, OUTPUT_CHANNEL_LOGS_ID):
+        return supplier.get("alias") or supplier.get("real") or title
+    return supplier.get("real") or supplier.get("alias") or title
+
+
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
     await message.answer(
@@ -74,7 +84,6 @@ async def cmd_start(message: Message):
     )
 
 
-# для -mails архивов
 @dp.message(F.document, lambda m: m.document and is_mails_archive(m.document.file_name))
 async def handle_mails_archive(message: Message):
     document = message.document
@@ -163,7 +172,6 @@ async def handle_mails_archive(message: Message):
         shutil.rmtree(folder, ignore_errors=True)
 
 
-# для -logs архивов (разделение на sebe и vyaz)
 @dp.message(F.document, lambda m: m.document and is_logs_archive(m.document.file_name))
 async def handle_logs_archive(message: Message):
     document = message.document
@@ -176,7 +184,9 @@ async def handle_logs_archive(message: Message):
 
     chat_id = message.chat.id
     chat_title = message.chat.title or "Private"
-    chat_tag = get_chat_tag(chat_id, chat_title)
+    chat_tag = choose_tag_for_destination(
+        chat_id, chat_title, destination=OUTPUT_CHANNEL_LOGS_ID
+    )
 
     folder = tempfile.mkdtemp(prefix="logs_")
     folder_1_5 = tempfile.mkdtemp(prefix="logs_1_5_")
@@ -309,7 +319,6 @@ async def handle_logs_archive(message: Message):
         shutil.rmtree(folder_other, ignore_errors=True)
 
 
-# для обычных архивов (игнорируем -mails и -logs)
 @dp.message(
     F.document,
     lambda m: m.document
@@ -327,7 +336,9 @@ async def handle_archive(message: Message):
 
     chat_id = message.chat.id
     chat_title = message.chat.title or "Private"
-    chat_tag = get_chat_tag(chat_id, chat_title)
+    chat_tag = choose_tag_for_destination(
+        chat_id, chat_title, destination=OUTPUT_CHANNEL_TXT_ID
+    )
 
     size_mb = file_size / (1024 * 1024)
     status_msg = await bot.send_message(
@@ -391,7 +402,6 @@ async def handle_archive(message: Message):
         base = os.path.join(folder, pack_name)
         archive_path = shutil.make_archive(base, "zip", folder)
 
-        # Use the original size_mb calculated from the file_size
         await status_msg.edit_text(f"✅ Готово ({size_mb:.2f} МБ)\n📤 Отправка...")
 
         moscow_tz = pytz.timezone("Europe/Moscow")

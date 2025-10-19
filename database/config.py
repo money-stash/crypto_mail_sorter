@@ -12,4 +12,10 @@ OUTPUT_CHANNEL_LOGS_ID = "-1002378196415"
 CHAT_TAGS = {}  # Оставьте пустым
 
 GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1flmM2s_TwcDMNwAKWYb_qMOqQC1uyzcY8TSkNxtXsQg/edit?usp=sharing"
-GOOGLE_CREDENTIALS_FILE = "second-project.json"  # путь к  credentials
+GOOGLE_CREDENTIALS_FILE = (
+    "second-project-428721-2911a79572d3.json"  # путь к  credentials
+)
+
+SUPPLIERS = {
+    -1002405948916: {"alias": "kent", "real": "cryptobrain"},
+}
