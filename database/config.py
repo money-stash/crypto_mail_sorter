@@ -15,7 +15,13 @@ GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1flmM2s_TwcDMNwAKWYb_
 GOOGLE_CREDENTIALS_FILE = (
     "second-project-428721-2911a79572d3.json"  # путь к  credentials
 )
-
+ADMIN_IDS = [7506300161]
 SUPPLIERS = {
     -1002405948916: {"alias": "kent", "real": "cryptobrain"},
+    -1003176580263: {"alias": "kent", "real": "cryptobrain"},
+    -1002907257866: {"alias": "vicky", "real": "velvet"},
+    -4987520181: {"alias": "milk", "real": "boss"},
+    -1003020572173: {"alias": "whisky", "real": "winston"},
+    -1003129902696: {"alias": "huyar", "real": "akhyar"},
+    -1003175345101: {"alias": "smurf", "real": "smurf"},
 }

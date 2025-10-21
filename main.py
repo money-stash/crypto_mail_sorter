@@ -19,6 +19,7 @@ from database.config import (
     OUTPUT_CHANNEL_TXT_ID,
     GOOGLE_SHEET_URL,
     SUPPLIERS,
+    ADMIN_IDS,
 )
 from just_cleaner import main_cleaner
 from utils.bot_utils import (
@@ -70,6 +71,24 @@ def choose_tag_for_destination(
     if destination in (OUTPUT_CHANNEL_TXT_ID, OUTPUT_CHANNEL_LOGS_ID):
         return supplier.get("alias") or supplier.get("real") or title
     return supplier.get("real") or supplier.get("alias") or title
+
+
+@dp.message(Command("reset"))
+async def cmd_reset(message: Message):
+    user_id = message.from_user.id if message.from_user else None
+    if user_id not in ADMIN_IDS:
+        await message.answer("❌ У вас нет прав.")
+        return
+    moscow_tz = pytz.timezone("Europe/Moscow")
+    today_str = datetime.now(moscow_tz).strftime("%Y%m%d")
+    keys_to_delete = [
+        k
+        for k in list(daily_counters.keys())
+        if len(k.split("-")) >= 2 and k.split("-")[1].startswith(today_str)
+    ]
+    for k in keys_to_delete:
+        daily_counters.pop(k, None)
+    await message.answer("✅ Счетчики за сегодня сброшены.")
 
 
 @dp.message(Command("start"))
