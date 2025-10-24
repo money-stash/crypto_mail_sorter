@@ -1,7 +1,7 @@
 import os
 import chardet
 from utils.logger import logger
-from database.config import BODIES
+from config import BODIES
 
 
 def detect_encoding(file_path):

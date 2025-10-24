@@ -1,6 +1,6 @@
 import os
 from utils.logger import logger
-from database.config import LOGS_FOLDER, BODIES
+from config import BODIES
 
 
 def remove_messages_paranoid(txt_path):

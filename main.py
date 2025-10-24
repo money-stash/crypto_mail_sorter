@@ -13,7 +13,7 @@ from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.client.telegram import TelegramAPIServer
-from database.config import (
+from config import (
     BOT_TOKEN,
     OUTPUT_CHANNEL_LOGS_ID,
     OUTPUT_CHANNEL_TXT_ID,
@@ -31,34 +31,20 @@ from utils.bot_utils import (
     _extract_rar,
     zip_folder,
 )
+from utils.file_utils import is_mails_archive, is_logs_archive
+import json
+from pathlib import Path
+
+DATA_DIR = Path("data")
+COUNTERS_DIR = DATA_DIR / "daily_counters"
+COUNTERS_DIR.mkdir(parents=True, exist_ok=True)
+_counters_lock = asyncio.Lock()
 
 LOCAL_API_SERVER = "http://localhost:8081"
 local_api = TelegramAPIServer.from_base(LOCAL_API_SERVER, is_local=True)
 session = AiohttpSession(api=local_api)
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
-
-daily_counters = defaultdict(int)
-
-
-def is_mails_archive(filename: str) -> bool:
-    filename_lower = filename.lower()
-    return "-mails" in filename_lower
-
-
-def is_logs_archive(filename: str) -> bool:
-    filename_lower = filename.lower()
-    return "-logs" in filename_lower
-
-
-def generate_pack_name(chat_id: int, tag: str, suffix: str = "pack") -> str:
-    moscow_tz = pytz.timezone("Europe/Moscow")
-    now = datetime.now(moscow_tz)
-    date_str = now.strftime("%d.%m")
-    counter_key = f"{chat_id}-{now.strftime('%Y%m%d')}-{suffix}"
-    daily_counters[counter_key] += 1
-    pack_number = daily_counters[counter_key]
-    return f"{tag}-{pack_number}-{suffix}-{date_str}"
 
 
 def choose_tag_for_destination(
@@ -73,6 +59,53 @@ def choose_tag_for_destination(
     return supplier.get("real") or supplier.get("alias") or title
 
 
+def _counters_file_for_date(date_str: str) -> Path:
+    return COUNTERS_DIR / f"counters-{date_str}.json"
+
+
+async def _load_counters_for_date(date_str: str) -> dict:
+    file_path = _counters_file_for_date(date_str)
+    if not file_path.exists():
+        return {}
+    async with _counters_lock:
+        return await asyncio.to_thread(
+            lambda: json.loads(file_path.read_text(encoding="utf-8") or "{}")
+        )
+
+
+async def _save_counters_for_date(date_str: str, data: dict) -> None:
+    file_path = _counters_file_for_date(date_str)
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    async with _counters_lock:
+        await asyncio.to_thread(
+            lambda: file_path.write_text(
+                json.dumps(data, ensure_ascii=False), encoding="utf-8"
+            )
+        )
+
+
+async def _increment_counter_key(date_str: str, key: str) -> int:
+    counters = await _load_counters_for_date(date_str)
+    value = int(counters.get(key, 0)) + 1
+    counters[key] = value
+    await _save_counters_for_date(date_str, counters)
+    return value
+
+
+async def _reset_counters_for_date(date_str: str) -> None:
+    await _save_counters_for_date(date_str, {})
+
+
+async def generate_pack_name(chat_id: int, tag: str, suffix: str = "pack") -> str:
+    moscow_tz = pytz.timezone("Europe/Moscow")
+    now = datetime.now(moscow_tz)
+    date_str = now.strftime("%d.%m")
+    key_date = now.strftime("%Y%m%d")
+    counter_key = f"{chat_id}-{key_date}-{suffix}"
+    pack_number = await _increment_counter_key(key_date, counter_key)
+    return f"{tag}-{pack_number}-{suffix}-{date_str}"
+
+
 @dp.message(Command("reset"))
 async def cmd_reset(message: Message):
     user_id = message.from_user.id if message.from_user else None
@@ -80,14 +113,8 @@ async def cmd_reset(message: Message):
         await message.answer("❌ У вас нет прав.")
         return
     moscow_tz = pytz.timezone("Europe/Moscow")
-    today_str = datetime.now(moscow_tz).strftime("%Y%m%d")
-    keys_to_delete = [
-        k
-        for k in list(daily_counters.keys())
-        if len(k.split("-")) >= 2 and k.split("-")[1].startswith(today_str)
-    ]
-    for k in keys_to_delete:
-        daily_counters.pop(k, None)
+    today_key_date = datetime.now(moscow_tz).strftime("%Y%m%d")
+    await _reset_counters_for_date(today_key_date)
     await message.answer("✅ Счетчики за сегодня сброшены.")
 
 
@@ -271,13 +298,13 @@ async def handle_logs_archive(message: Message):
         archives = []
 
         if os.listdir(folder_1_5):
-            name = generate_pack_name(chat_id, chat_tag, "sebe")
+            name = await generate_pack_name(chat_id, chat_tag, "sebe")
             out_path = os.path.join(tempfile.gettempdir(), name + ".zip")
             zip_folder(folder_1_5, out_path)
             archives.append((out_path, name))
 
         if os.listdir(folder_other):
-            name = generate_pack_name(chat_id, chat_tag, "vyaz")
+            name = await generate_pack_name(chat_id, chat_tag, "vyaz")
             out_path = os.path.join(tempfile.gettempdir(), name + ".zip")
             zip_folder(folder_other, out_path)
             archives.append((out_path, name))
@@ -416,7 +443,7 @@ async def handle_archive(message: Message):
         except Exception as e:
             await status_msg.edit_text(f"⚠️ Ошибка очистки: {e}\n⏳ Архивация...")
 
-        pack_name = generate_pack_name(chat_id, chat_tag)
+        pack_name = await generate_pack_name(chat_id, chat_tag)
 
         base = os.path.join(folder, pack_name)
         archive_path = shutil.make_archive(base, "zip", folder)

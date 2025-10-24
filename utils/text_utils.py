@@ -8,7 +8,7 @@ from utils.file_utils import (
     remove_messages_by_snippet_match_paranoid,
 )
 
-from database.config import WITHDRAW_REG, P2P_REG, DEPOSIT_REG, BODIES
+from config import WITHDRAW_REG, P2P_REG, DEPOSIT_REG, BODIES
 
 
 def extract_transaction_info(text: str):

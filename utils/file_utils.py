@@ -1,4 +1,4 @@
-from database.config import BODIES
+from config import BODIES
 
 
 def add_ban_word(text):
@@ -62,3 +62,13 @@ def remove_messages_by_snippet_match_paranoid(file_path: str, target_snippet: li
         with open(file_path, "w", encoding="utf-8") as f:
             cleaned_blocks = ["".join(block).rstrip("\n") for block in filtered_blocks]
             f.write("\n\n".join(cleaned_blocks) + "\n")
+
+
+def is_mails_archive(filename: str) -> bool:
+    filename_lower = filename.lower()
+    return "-mails" in filename_lower
+
+
+def is_logs_archive(filename: str) -> bool:
+    filename_lower = filename.lower()
+    return "-logs" in filename_lower

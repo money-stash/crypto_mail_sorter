@@ -3,7 +3,7 @@ import re
 import shutil
 import subprocess
 
-from database.config import GOOGLE_CREDENTIALS_FILE, CHAT_TAGS
+from config import GOOGLE_CREDENTIALS_FILE, CHAT_TAGS
 
 import gspread
 from google.oauth2.service_account import Credentials

@@ -15,7 +15,7 @@ GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1flmM2s_TwcDMNwAKWYb_
 GOOGLE_CREDENTIALS_FILE = (
     "second-project-428721-2911a79572d3.json"  # путь к  credentials
 )
-ADMIN_IDS = [7506300161]
+ADMIN_IDS = [7506300161, 7742837753]
 SUPPLIERS = {
     -1002405948916: {"alias": "kent", "real": "cryptobrain"},
     -1003176580263: {"alias": "kent", "real": "cryptobrain"},
