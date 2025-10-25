@@ -1,11 +1,12 @@
 import os
 import pytz
+import json
 import zipfile
 import shutil
 import asyncio
 import tempfile
+from pathlib import Path
 from datetime import datetime
-from collections import defaultdict
 
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message, FSInputFile
@@ -13,6 +14,7 @@ from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.client.telegram import TelegramAPIServer
+from aiogram.exceptions import TelegramRetryAfter
 from config import (
     BOT_TOKEN,
     OUTPUT_CHANNEL_LOGS_ID,
@@ -32,8 +34,6 @@ from utils.bot_utils import (
     zip_folder,
 )
 from utils.file_utils import is_mails_archive, is_logs_archive
-import json
-from pathlib import Path
 
 DATA_DIR = Path("data")
 COUNTERS_DIR = DATA_DIR / "daily_counters"
@@ -45,6 +45,24 @@ local_api = TelegramAPIServer.from_base(LOCAL_API_SERVER, is_local=True)
 session = AiohttpSession(api=local_api)
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
+
+
+async def safe_edit(message: Message, text: str):
+    if message is None:
+        return
+    while True:
+        try:
+            await message.edit_text(text)
+            await asyncio.sleep(1.5)
+            break
+        except TelegramRetryAfter as e:
+            await asyncio.sleep(e.retry_after + 0.5)
+        except Exception as e:
+            try:
+                print(f"Edit error: {e}")
+            except:
+                pass
+            break
 
 
 def choose_tag_for_destination(
@@ -158,9 +176,9 @@ async def handle_mails_archive(message: Message):
 
     try:
         await bot.download(document, destination=file_path)
-        await status_msg.edit_text(f"✅ Скачано\n⏳ Распаковка...")
+        await safe_edit(status_msg, "✅ Скачано\n⏳ Распаковка...")
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка скачивания: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка скачивания: {e}")
         shutil.rmtree(folder, ignore_errors=True)
         return
 
@@ -174,7 +192,7 @@ async def handle_mails_archive(message: Message):
         else:
             _extract_rar(file_path, folder)
 
-        await status_msg.edit_text("✅ Распаковано\n⏳ Сканирование файлов...")
+        await safe_edit(status_msg, "✅ Распаковано\n⏳ Сканирование файлов...")
 
         try:
             os.remove(file_path)
@@ -188,11 +206,12 @@ async def handle_mails_archive(message: Message):
         all_files = get_all_files_in_archive(folder)
 
         if not all_files:
-            await status_msg.edit_text("⚠️ В архиве не найдено файлов")
+            await safe_edit(status_msg, "⚠️ В архиве не найдено файлов")
             return
 
-        await status_msg.edit_text(
-            f"✅ Найдено файлов: {len(all_files)}\n⏳ Запись в Google Таблицу..."
+        await safe_edit(
+            status_msg,
+            f"✅ Найдено файлов: {len(all_files)}\n⏳ Запись в Google Таблицу...",
         )
 
         try:
@@ -201,18 +220,19 @@ async def handle_mails_archive(message: Message):
             worksheet = get_or_create_sheet(client, GOOGLE_SHEET_URL, sheet_name)
             write_to_sheet(worksheet, file_name, all_files)
 
-            await status_msg.edit_text(
+            await safe_edit(
+                status_msg,
                 f"✅ Готово!\n"
                 f"📦 Архив: {file_name}\n"
                 f"📁 Файлов: {len(all_files)}\n"
-                f"📊 Записано в лист: {sheet_name}"
+                f"📊 Записано в лист: {sheet_name}",
             )
         except Exception as e:
-            await status_msg.edit_text(f"❌ Ошибка записи в таблицу: {e}")
+            await safe_edit(status_msg, f"❌ Ошибка записи в таблицу: {e}")
             print(f"Google Sheets error: {e}")
 
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка обработки: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка обработки: {e}")
         print(f"Processing error: {e}")
     finally:
         shutil.rmtree(folder, ignore_errors=True)
@@ -252,7 +272,7 @@ async def handle_logs_archive(message: Message):
 
     try:
         await bot.download(document, destination=file_path)
-        await status_msg.edit_text("✅ Скачано\n⏳ Распаковка...")
+        await safe_edit(status_msg, "✅ Скачано\n⏳ Распаковка...")
 
         if ext == ".zip":
             with zipfile.ZipFile(file_path, "r") as z:
@@ -263,7 +283,7 @@ async def handle_logs_archive(message: Message):
         else:
             _extract_rar(file_path, folder)
 
-        await status_msg.edit_text("✅ Распаковано\n⏳ Сортировка файлов...")
+        await safe_edit(status_msg, "✅ Распаковано\n⏳ Сортировка файлов...")
 
         try:
             os.remove(file_path)
@@ -293,7 +313,7 @@ async def handle_logs_archive(message: Message):
                 else:
                     shutil.move(full_path, os.path.join(folder_other, item))
 
-        await status_msg.edit_text("✅ Отсортировано\n⏳ Создание архивов...")
+        await safe_edit(status_msg, "✅ Отсортировано\n⏳ Создание архивов...")
 
         archives = []
 
@@ -311,11 +331,11 @@ async def handle_logs_archive(message: Message):
             arch_list = "\n".join([f"✅ Архив упакован: {a[1]}.zip" for a in archives])
 
         if not archives:
-            await status_msg.edit_text("⚠️ Нет папок для архивации")
+            await safe_edit(status_msg, "⚠️ Нет папок для архивации")
             return
 
-        await status_msg.edit_text(
-            f"✅ Создано архивов: {len(archives)}\n⏳ Отправка..."
+        await safe_edit(
+            status_msg, f"✅ Создано архивов: {len(archives)}\n⏳ Отправка..."
         )
 
         for archive_path, archive_name in archives:
@@ -343,7 +363,7 @@ async def handle_logs_archive(message: Message):
                     ]
                 )
             except Exception as e:
-                await status_msg.edit_text(f"❌ Ошибка отправки: {e}")
+                await safe_edit(status_msg, f"❌ Ошибка отправки: {e}")
                 print(f"Send error: {e}")
             finally:
                 try:
@@ -357,7 +377,7 @@ async def handle_logs_archive(message: Message):
             pass
 
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка: {e}")
         print(f"Logs processing error: {e}")
     finally:
         shutil.rmtree(folder, ignore_errors=True)
@@ -397,9 +417,9 @@ async def handle_archive(message: Message):
 
     try:
         await bot.download(document, destination=file_path)
-        await status_msg.edit_text(f"✅ Скачано\n⏳ Распаковка...")
+        await safe_edit(status_msg, f"✅ Скачано\n⏳ Распаковка...")
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка: {e}")
         shutil.rmtree(folder, ignore_errors=True)
         return
 
@@ -419,10 +439,10 @@ async def handle_archive(message: Message):
                 raise RuntimeError("Загрузите .part1 со всеми частями")
             _extract_rar(file_path, folder)
 
-        await status_msg.edit_text("✅ Распаковано\n⏳ Очистка...")
+        await safe_edit(status_msg, "✅ Распаковано\n⏳ Очистка...")
 
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка распаковки: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка распаковки: {e}")
         shutil.rmtree(folder, ignore_errors=True)
         return
 
@@ -439,16 +459,16 @@ async def handle_archive(message: Message):
     try:
         try:
             main_cleaner(folder_path=folder)
-            await status_msg.edit_text("✅ Очищено\n⏳ Архивация...")
+            await safe_edit(status_msg, "✅ Очищено\n⏳ Архивация...")
         except Exception as e:
-            await status_msg.edit_text(f"⚠️ Ошибка очистки: {e}\n⏳ Архивация...")
+            await safe_edit(status_msg, f"⚠️ Ошибка очистки: {e}\n⏳ Архивация...")
 
         pack_name = await generate_pack_name(chat_id, chat_tag)
 
         base = os.path.join(folder, pack_name)
         archive_path = shutil.make_archive(base, "zip", folder)
 
-        await status_msg.edit_text(f"✅ Готово ({size_mb:.2f} МБ)\n📤 Отправка...")
+        await safe_edit(status_msg, f"✅ Готово ({size_mb:.2f} МБ)\n📤 Отправка...")
 
         moscow_tz = pytz.timezone("Europe/Moscow")
         now = datetime.now(moscow_tz)
@@ -467,7 +487,7 @@ async def handle_archive(message: Message):
                 caption=caption,
             )
         except Exception as e:
-            await status_msg.edit_text(f"❌ Ошибка отправки в канал: {e}")
+            await safe_edit(status_msg, f"❌ Ошибка отправки в канал: {e}")
             print(f"Send error: {e}")
         else:
             try:
@@ -476,7 +496,7 @@ async def handle_archive(message: Message):
                 pass
 
     except Exception as e:
-        await status_msg.edit_text(f"❌ Ошибка: {e}")
+        await safe_edit(status_msg, f"❌ Ошибка: {e}")
         print(f"Error: {e}")
     finally:
         if archive_path and os.path.exists(archive_path):
