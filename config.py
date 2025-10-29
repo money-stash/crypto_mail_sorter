@@ -1,3 +1,7 @@
+import asyncio
+from pathlib import Path
+
+
 LOGS_FOLDER = "logs/"
 BODIES = "database/keep_bodies.txt"
 WITHDRAW_REG = "database/withdraw_regular.txt"
@@ -6,7 +10,7 @@ DEPOSIT_REG = "database/deposit_regular.txt"
 TRASH_REG = "database/trash_regular.txt"
 
 DEEPSEEK_API = "sk-0eaaf2ad59d547939fafd9953f03e83e"
-BOT_TOKEN = "8349112655:AAEMtbx5yQQwR2W3N0Kw2rHT9j5TTXJ2WDU"
+BOT_TOKEN = "8156936879:AAGkopwiAUKqhoQ7WeWhVk88Mk6s5gbMffo"
 OUTPUT_CHANNEL_TXT_ID = "-1002378196415"
 OUTPUT_CHANNEL_LOGS_ID = "-1002378196415"
 CHAT_TAGS = {}  # Оставьте пустым
@@ -25,3 +29,7 @@ SUPPLIERS = {
     -1003129902696: {"alias": "huyar", "real": "akhyar"},
     -1003175345101: {"alias": "smurf", "real": "smurf"},
 }
+
+DATA_DIR = Path("data")
+COUNTERS_DIR = DATA_DIR / "daily_counters"
+_counters_lock = asyncio.Lock()
