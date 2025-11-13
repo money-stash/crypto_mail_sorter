@@ -48,7 +48,7 @@ LOCAL_API_SERVER = "http://localhost:8081"
 local_api = TelegramAPIServer.from_base(LOCAL_API_SERVER, is_local=True)
 session = AiohttpSession(api=local_api)
 COUNTERS_DIR.mkdir(parents=True, exist_ok=True)
-bot = Bot(token=BOT_TOKEN, session=session)
+bot = Bot(token=BOT_TOKEN)  # , session=session
 dp = Dispatcher(storage=MemoryStorage())
 
 
@@ -148,7 +148,7 @@ async def cmd_start(message: Message):
     )
 
 
-# ==================== ОБРАБОТЧИКИ ====================
+# ==================== обработка ====================
 
 
 async def _process_mails(message: Message):
@@ -404,7 +404,7 @@ async def _process_regular(message: Message):
         shutil.rmtree(folder, ignore_errors=True)
 
 
-# ==================== ФИЛЬТРЫ И ДОБАВЛЕНИЕ В ОЧЕРЕДЬ ====================
+# ==================== фильтры доьавление в очередь ====================
 
 
 @dp.message(F.document, lambda m: m.document and is_mails_archive(m.document.file_name))
