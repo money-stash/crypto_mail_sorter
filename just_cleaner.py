@@ -25,18 +25,6 @@ def main_cleaner(folder_path="dirty_logs/"):
                         text = raw_data.decode(encoding, errors="replace")
 
                     lines = text.splitlines()
-                    lines = [
-                        line
-                        for line in lines
-                        if not (
-                            (
-                                ("/\tTRUE" in line or "/\tFALSE" in line)
-                                and len(line) > 50
-                            )
-                            or ".google.com" in line
-                            or "mail.google.com" in line
-                        )
-                    ]
                     text = "\n".join(lines)
                     with open(full_path, "w", encoding="utf-8") as f:
                         f.write(text)
